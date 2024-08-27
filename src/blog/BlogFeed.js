@@ -20,14 +20,14 @@ const BlogFeed = ({ onSelectPost }) => {
 
       const loadedPosts = await Promise.all(
         postFiles.map(async (file, index) => {
-		  const path = `./personalSite/posts/${file}`
+		  const path = `./posts/${file}`
           const response = await fetch(path);
           const text = await response.text();
           // Extract metadata and content
           const { title, date, author, content } = parseMetadata(text);
 
           return {
-            id: index, // Use index or a unique identifier
+            id: index + 1, // Use index or a unique identifier
             title,
             date,
             author,

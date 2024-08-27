@@ -15,7 +15,7 @@ const BlogPost = () => {
     const loadPost = async () => {
       try {
         // Fetch the markdown file based on the ID
-        const response = await fetch(`../../personalSite/posts/post${id}.md`);
+        const response = await fetch(`../posts/post${id}.md`);
         
         if (!response.ok) {
           throw new Error('Failed to load the post');
