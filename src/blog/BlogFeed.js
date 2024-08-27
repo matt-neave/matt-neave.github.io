@@ -20,7 +20,7 @@ const BlogFeed = ({ onSelectPost }) => {
 
       const loadedPosts = await Promise.all(
         postFiles.map(async (file, index) => {
-		  const path = `./posts/${file}`
+		  const path = `/posts/${file}`
           const response = await fetch(path);
           const text = await response.text();
           // Extract metadata and content
