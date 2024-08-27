@@ -20,9 +20,9 @@ const BlogFeed = ({ onSelectPost }) => {
 
       const loadedPosts = await Promise.all(
         postFiles.map(async (file, index) => {
-          const response = await fetch(process.env.PUBLIC_URL + `/posts/${file}`);
+		  const path = `./personalSite/posts/${file}`
+          const response = await fetch(path);
           const text = await response.text();
-
           // Extract metadata and content
           const { title, date, author, content } = parseMetadata(text);
 
