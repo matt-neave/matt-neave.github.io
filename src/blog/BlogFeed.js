@@ -3,10 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import BlogList from './BlogList';
 import BlogPost from './BlogPost';
-import { parseMetadata } from './metadataParser';
+import { parseMetadata } from './metadataParser'; // Import a utility to parse metadata
 
-const BlogFeed = ({ onSelectPost, selectedPost }) => {
+const BlogFeed = ({ onSelectPost }) => {
   const [posts, setPosts] = useState([]);
+  const [selectedPostIndex, setSelectedPostIndex] = useState(null);
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -18,15 +19,15 @@ const BlogFeed = ({ onSelectPost, selectedPost }) => {
       ];
 
       const loadedPosts = await Promise.all(
-        postFiles.map(async (file) => {
-		  console.log(process.env.PUBLIC_URL);
+        postFiles.map(async (file, index) => {
           const response = await fetch(process.env.PUBLIC_URL + `/posts/${file}`);
           const text = await response.text();
 
+          // Extract metadata and content
           const { title, date, author, content } = parseMetadata(text);
 
           return {
-            file,
+            id: index, // Use index or a unique identifier
             title,
             date,
             author,
@@ -35,6 +36,7 @@ const BlogFeed = ({ onSelectPost, selectedPost }) => {
         })
       );
 
+      // Sort posts by date in descending order
       loadedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
       setPosts(loadedPosts);
     };
@@ -44,11 +46,8 @@ const BlogFeed = ({ onSelectPost, selectedPost }) => {
 
   return (
     <div className="blog-feed">
-      {selectedPost ? (
-        <BlogPost content={selectedPost.content} />
-      ) : (
-        <BlogList posts={posts} onSelectPost={onSelectPost} />
-      )}
+      <h2>Read more from Matt Neave</h2>
+      <BlogList posts={posts} onSelectPost={onSelectPost} />
     </div>
   );
 };
