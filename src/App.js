@@ -2,9 +2,14 @@
 
 import React from 'react';
 import './App.css';
-import BlogFeed from './BlogFeed';
+import BlogFeed from './blog/BlogFeed';
 
 function App() {
+  // Function to handle scroll to the blog feed
+  const scrollToBlogFeed = () => {
+    document.getElementById('blog-feed').scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="container">
       <header className="header">
@@ -13,12 +18,17 @@ function App() {
       </header>
       <main className="main-content">
         <h1 className="title">
-          Software Engineer
+          Matt Neave — Software Engineer
         </h1>
         <p className="description">
-          I'm Matt Neave, a software engineer based in London. I graduated from Imperial College London in 2024 with a Master's degree in Computing.
+          Matt Neave is a software engineer based in London. He graduated from Imperial College London in 2024 with a Master's degree in Computing.
         </p>
-        <BlogFeed />
+        {/* <div className="divider"> */}
+          {/* <button className="read-more-button" onClick={scrollToBlogFeed}>Read More</button> */}
+        {/* </div> */}
+        <div id="blog-feed">
+          <BlogFeed />
+        </div>
       </main>
     </div>
   );
