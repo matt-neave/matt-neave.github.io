@@ -6,20 +6,64 @@ body {
     background-color: #1e1e1e; /* Slightly gray background */
     color: #ffffff;
     overflow-x: hidden; /* Prevents scrollbars from appearing due to the animation */
+    position: relative;
 }
 
-/* src/App.css */
+/* Apply the moving trails effect to the body instead of .container */
+body::before, body::after {
+    content: '';
+    position: fixed; /* Use fixed position to ensure it covers the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 10%);
+    background-size: 20px 20px; /* Default size for small screens */
+    opacity: 0.5;
+    animation: moveTrails 20s linear infinite;
+    z-index: -1; /* Ensure it stays behind all other content */
+}
 
-/* Adjust the container to use flexbox for centering */
+body::after {
+    animation-delay: -10s;
+    opacity: 0.3;
+}
+
+@media (min-width: 768px) {
+    body::before, body::after {
+        background-size: 30px 30px; /* Larger size for tablets and small laptops */
+    }
+}
+
+@media (min-width: 1024px) {
+    body::before, body::after {
+        background-size: 40px 40px; /* Larger size for larger laptops and desktops */
+    }
+}
+
+/* Adjust the container to remove the 100vh constraint */
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: flex-start; /* Align content to the start (left) */
-    height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
     padding: 20px;
     position: relative;
+    min-height: 100vh; /* Ensure it fills the viewport initially, but grows with content */
 }
+
+/* Keeping the rest of your styles as they are */
+
+@keyframes moveTrails {
+    0% {
+        transform: translate3d(-100%, 0, 0);
+    }
+    100% {
+        transform: translate3d(100%, 0, 0);
+    }
+}
+
 
 /* Center the main content and add some horizontal offset */
 .main-content {
@@ -28,10 +72,24 @@ body {
     flex-direction: column;
     justify-content: center;
     color: #ffffff;
-	padding-top: 30%;
+	padding-top: 15%;
     max-width: 70%; /* Limit the width to ensure it's not too wide */
     margin-left: 10%; /* Offset to the left */
 }
+
+/* src/App.css */
+
+.new-label {
+    background-color: #ff8c00;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
 
 /* Style for the divider and the button */
 .divider {
@@ -62,7 +120,6 @@ body {
     justify-content: space-between;
     align-items: center;
     font-size: 1rem;
-    padding-top: 5%; /* Add padding to adjust vertical centering */
 }
 
 
@@ -130,27 +187,6 @@ body {
     opacity: 0.3;
 }
 
-/* Media queries to scale the background animation based on viewport width */
-@media (min-width: 768px) {
-    .container::before, .container::after {
-        background-size: 30px 30px; /* Larger size for tablets and small laptops */
-    }
-}
-
-@media (min-width: 1024px) {
-    .container::before, .container::after {
-        background-size: 40px 40px; /* Larger size for larger laptops and desktops */
-    }
-}
-
-@keyframes moveTrails {
-    0% {
-        transform: translate3d(-100%, 0, 0);
-    }
-    100% {
-        transform: translate3d(100%, 0, 0);
-    }
-}
 
 .blog-feed {
     margin-top: 40px;

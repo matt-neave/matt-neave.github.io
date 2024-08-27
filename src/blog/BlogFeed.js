@@ -1,11 +1,12 @@
+// src/blog/BlogFeed.js
+
 import React, { useState, useEffect } from 'react';
 import BlogList from './BlogList';
 import BlogPost from './BlogPost';
-import { parseMetadata } from './metadataParser'; // Import a utility to parse metadata
+import { parseMetadata } from './metadataParser';
 
-const BlogFeed = () => {
+const BlogFeed = ({ onSelectPost, selectedPost }) => {
   const [posts, setPosts] = useState([]);
-  const [selectedPostIndex, setSelectedPostIndex] = useState(null);
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -21,7 +22,6 @@ const BlogFeed = () => {
           const response = await fetch(process.env.PUBLIC_URL + `/posts/${file}`);
           const text = await response.text();
 
-          // Extract metadata and content
           const { title, date, author, content } = parseMetadata(text);
 
           return {
@@ -34,7 +34,6 @@ const BlogFeed = () => {
         })
       );
 
-      // Sort posts by date in descending order
       loadedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
       setPosts(loadedPosts);
     };
@@ -42,24 +41,12 @@ const BlogFeed = () => {
     loadPosts();
   }, []);
 
-  const handleSelectPost = (index) => {
-    setSelectedPostIndex(index);
-  };
-
-  const handleBackToList = () => {
-    setSelectedPostIndex(null);
-  };
-
   return (
     <div className="blog-feed">
-	  <h2>Read more from Matt Neave</h2>
-      {selectedPostIndex === null ? (
-        <BlogList posts={posts} onSelectPost={handleSelectPost} />
+      {selectedPost ? (
+        <BlogPost content={selectedPost.content} />
       ) : (
-        <>
-          <button className="back-button" onClick={handleBackToList}>Back to list</button>
-          <BlogPost content={posts[selectedPostIndex].content} />
-        </>
+        <BlogList posts={posts} onSelectPost={onSelectPost} />
       )}
     </div>
   );
