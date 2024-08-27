@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+// src/App.js
+
+import React from 'react';
 import './App.css';
+import BlogFeed from './BlogFeed';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="container">
+      <header className="header">
+        <div className="logo">Matt Neave</div>
+        {/* <button className="contact-button">Contact</button> */}
       </header>
+      <main className="main-content">
+        <h1 className="title">
+          Software Engineer
+        </h1>
+        <p className="description">
+          I'm Matt Neave, a software engineer based in London. I graduated from Imperial College London in 2024 with a Master's degree in Computing.
+        </p>
+        <BlogFeed />
+      </main>
     </div>
   );
 }
