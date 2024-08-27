@@ -19,6 +19,7 @@ const BlogFeed = ({ onSelectPost, selectedPost }) => {
 
       const loadedPosts = await Promise.all(
         postFiles.map(async (file) => {
+		  console.log(process.env.PUBLIC_URL);
           const response = await fetch(process.env.PUBLIC_URL + `/posts/${file}`);
           const text = await response.text();
 
