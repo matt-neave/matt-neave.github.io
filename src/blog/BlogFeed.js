@@ -17,11 +17,14 @@ const BlogFeed = ({ onSelectPost }) => {
         'post3.md',
         'post4.md',
       ];
-	  const basePath = '';
-
+	  
+	  const username = 'matt-neave';
+	  const repository = 'personalSite';
+	  const branch = 'main';
+	  
 	  const loadedPosts = await Promise.all(
 		postFiles.map(async (file, index) => {
-		  const path = `${basePath}/posts/${file}`; // Include base URL in path
+		  const path = `https://raw.githubusercontent.com/${username}/${repository}/${branch}/public/posts/${file}`;
 		  const response = await fetch(path);
 		  if (!response.ok) {
 			throw new Error(`Could not fetch the file: ${path}`);
@@ -39,6 +42,7 @@ const BlogFeed = ({ onSelectPost }) => {
 		  };
 		})
 	  );
+	  
 
       // Sort posts by date in descending order
       loadedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
