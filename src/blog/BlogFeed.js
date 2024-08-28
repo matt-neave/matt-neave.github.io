@@ -20,7 +20,7 @@ const BlogFeed = ({ onSelectPost }) => {
 
       const loadedPosts = await Promise.all(
         postFiles.map(async (file, index) => {
-		  const path = `./personalSite/posts/${file}`
+		  const path = `posts/${file}`
           const response = await fetch(path);
           const text = await response.text();
           // Extract metadata and content
@@ -47,7 +47,7 @@ const BlogFeed = ({ onSelectPost }) => {
   return (
     <div className="blog-feed">
       <h2>Read more from Matt Neave</h2>
-	  <img src="./personalSite/logo512.png" />
+	  <img src="images/logo512.png" />
       <BlogList posts={posts} onSelectPost={onSelectPost} />
     </div>
   );
