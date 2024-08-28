@@ -15,7 +15,12 @@ const BlogPost = () => {
     const loadPost = async () => {
       try {
         // Fetch the markdown file based on the ID
-        const response = await fetch(`../../personalSite/posts/post${id}.md`);
+		const username = 'matt-neave';
+		const repository = 'personalSite';
+		const branch = 'main';
+		
+        const path = `https://raw.githubusercontent.com/${username}/${repository}/${branch}/public/posts/post${id}.md`;
+		const response = await fetch(path);
         
         if (!response.ok) {
           throw new Error('Failed to load the post');

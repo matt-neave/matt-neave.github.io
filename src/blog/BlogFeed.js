@@ -17,7 +17,7 @@ const BlogFeed = ({ onSelectPost }) => {
         'post3.md',
         'post4.md',
       ];
-	  
+
 	  const username = 'matt-neave';
 	  const repository = 'personalSite';
 	  const branch = 'main';
@@ -55,7 +55,6 @@ const BlogFeed = ({ onSelectPost }) => {
   return (
     <div className="blog-feed">
       <h2>Read more from Matt Neave</h2>
-	  <img src="images/logo512.png" />
       <BlogList posts={posts} onSelectPost={onSelectPost} />
     </div>
   );
