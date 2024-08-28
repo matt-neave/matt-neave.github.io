@@ -17,24 +17,28 @@ const BlogFeed = ({ onSelectPost }) => {
         'post3.md',
         'post4.md',
       ];
+	  const basePath = process.env.PUBLIC_URL || '';
 
-      const loadedPosts = await Promise.all(
-        postFiles.map(async (file, index) => {
-		  const path = `posts/${file}`
-          const response = await fetch(path);
-          const text = await response.text();
-          // Extract metadata and content
-          const { title, date, author, content } = parseMetadata(text);
-
-          return {
-            id: index + 1, // Use index or a unique identifier
-            title,
-            date,
-            author,
-            content,
-          };
-        })
-      );
+	  const loadedPosts = await Promise.all(
+		postFiles.map(async (file, index) => {
+		  const path = `${basePath}/posts/${file}`; // Include base URL in path
+		  const response = await fetch(path);
+		  if (!response.ok) {
+			throw new Error(`Could not fetch the file: ${path}`);
+		  }
+		  const text = await response.text();
+		  // Extract metadata and content
+		  const { title, date, author, content } = parseMetadata(text);
+	  
+		  return {
+			id: index + 1, // Use index or a unique identifier
+			title,
+			date,
+			author,
+			content,
+		  };
+		})
+	  );
 
       // Sort posts by date in descending order
       loadedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
