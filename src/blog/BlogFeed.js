@@ -17,7 +17,7 @@ const BlogFeed = ({ onSelectPost }) => {
         'post3.md',
         'post4.md',
       ];
-	  const basePath = process.env.PUBLIC_URL || '';
+	  const basePath = '';
 
 	  const loadedPosts = await Promise.all(
 		postFiles.map(async (file, index) => {
