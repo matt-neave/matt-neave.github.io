@@ -7,39 +7,23 @@ tags: Godot
 
 # Proximity Chat in Godot
 
-Exploring Proximity Chat in Godot.
+There has been a recent trend in multiplayer games, where a proximity-based voice chat is a core feature within the main game loop. Two examples of this include [Lethal Company](link) and [](link). I thought it would be an interesting exercise to look into how proximity chat can be implemented in Godot, and now I will share how to setup proximity chat in Godot.
 
-# Meas retinentibus Lucifero cuspidis
+## Introduction to the Nodes
 
-## Mihi populi quas pallet de nutricis multi
+Before we look at the code required to setup a functioning proximity chat, let's first look at the nodes we will be required to use. Namely, the `AudioStreamPlayer`. An `AudioStreamPlayer` plays *positional* sound in a 2D/3D space. Being *positional* means the node automatically controls how loud a sound should be played to a user, based on how far the user is from the sound.
 
-Lorem markdownum regia conspicui crocique celebri **pudore**, petendo **tacti
-genas patefecit** subsunt quoque in Pentheus. Manente quae plena tanto infans
-corpus imagine Lucifero dona motusque terras.
+We can easily attach an `AudioStreamMicrophone` to an `AudioStreamPlayer` to play back microphone input in real-time. In conjunction with an `AudioEffectCapture`, we can process the microphone input i.e. send the captured input over a network.
 
-Adulterium bracchia *iurare* Hesperiae fratres stamina aetherias secus geminas,
-sed spe, adversos Cyparissus ad inter illa: [Ecce](http://saucius.net/). Sic
-inquit meritam **tantumque** sontem rectoque.
+## Basic Setup
 
-## Ait sed atque vulnera vidit
+Now we understand the nodes we will use, let's look at a basic setup. In this example, we will use two `AudioStreamPlayers`; one for capturing our microphone, and one for playing the other microphones.
 
-Adicit arcus et auro [parantem indueret](http://petit.net/illa.html) Graias me
-superi de Troiae, tenues salutent semine ab, corpora fuit fuit. Natura foret
-subigebat riguo reminiscitur iunctam det undas dapibusque Alcides rapacibus
-mater, Strymone flavae.
+In a 2D space, we will use an `AudioStreamPlayer2D`, and similar steps can be followed for a 3D space. As we want our chat system to be localised by player positions, we attach both these to our player scene. Let's name one `MicrophoneInput` and the other `VoipOutput` for clarity. In this context, `voip` stands for voice-over-internet-protocol. We can reference both of these in a script attached to our player.
 
-> Caducum cum. Sed est tamen.
+```godot
+@onready var inp: AudioStreamPlayer2D = $MicrophoneInput
+@export var out: AudioStreamPlayer2D
+```
 
-## Aequorei et ignis rursus
-
-Oculis triennia onus: aliudve iam nobilitas natisque Helicen repercussae carmina
-currus a ensis. Clamor fide qui finire exclamo telluris et **equum purpureum**
-petis, hac de narrat, collesque.
-
-Sua precor Tyrrhenia quae. Illi tamen saepe auratis Orio vulnus oblitus Penthea
-aurea mulcendaque dixit! Haec qua.
-
-Consequar quoque ducentem **ferebat**, auras sed, regem et haec cum. Non Error
-diffudit trahenti *Palameden pondere* moresque ut equos: sors oculos in mihi en.
-Thalamos emissi viam, fuit vulgat numine! Asper pedibusque frater, de robustior
-laurea potest dabat utve ipse.
+## Introducing New Audio Buses
