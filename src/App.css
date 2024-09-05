@@ -78,6 +78,27 @@ body::after {
 
 /* Additional styles */
 
+/* New styles for tag labels */
+.tag-label {
+    background-color: #4caf50;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-right: 8px;
+    display: inline-block;
+}
+
+/* Flexbox to arrange tags on the left and new label on the right */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Adjust .new-label */
 .new-label {
     background-color: #ff8c00;
     color: #ffffff;
@@ -87,7 +108,19 @@ body::after {
     border-radius: 12px;
     margin-left: 10px;
     vertical-align: middle;
+    display: inline-block;
 }
+
+.post-summary h3 {
+    color: #ff8c00;
+    margin: 0;
+}
+
+.post-summary p {
+    color: #bbbbbb;
+    margin: 5px 0;
+}
+
 
 /* Style for the divider and the button */
 .divider {
