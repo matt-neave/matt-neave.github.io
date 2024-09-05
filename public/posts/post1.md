@@ -20,7 +20,7 @@ def start():
 	print("Hello world!")
 ```
 
-![test image](./images/shape_escape_0.png)
+![test image](images/shape_escape_0.png)
 
 # Meas retinentibus Lucifero cuspidis
 

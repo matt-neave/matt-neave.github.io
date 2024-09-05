@@ -47,7 +47,7 @@ const BlogPost = () => {
       return !inline && match ? (
         <SyntaxHighlighter
           style={vscDarkPlus} // Use the vscDarkPlus theme for syntax highlighting
-          language={match[1]} // Use the language specified in the Markdown
+          language={match[1].toLowerCase()} // Use the language specified in the Markdown
           PreTag="div"
           {...props}
         >
@@ -62,9 +62,8 @@ const BlogPost = () => {
 
     // Custom image renderer for handling relative image paths
     img: ({ alt, src }) => {
-      const imageUrl = src.startsWith('./')
-        ? `./images/${src.slice(1)}`
-        : src;
+		const imageUrl = src
+	  console.log(imageUrl);
       return <img src={imageUrl} alt={alt} style={{ maxWidth: '100%', height: 'auto' }} />;
     },
   };
