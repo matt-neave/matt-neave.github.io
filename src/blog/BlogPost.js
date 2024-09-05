@@ -60,6 +60,23 @@ const BlogPost = () => {
       );
     },
 
+	// Link renderer
+	a: ({ href, children }) => {
+		return (
+		  <a
+			href={href}
+			style={{
+			  color: '#ff8c00', // Set the desired color for the link
+			  textDecoration: 'none' // Optional: Remove the underline from the link
+			}}
+			target="_blank" // Optional: Open the link in a new tab
+			rel="noopener noreferrer" // Security for external links
+		  >
+			{children}
+		  </a>
+		);
+	  },
+
     // Custom image renderer for handling relative image paths
 	img: ({ alt, src }) => {
 		const imageUrl = `../${src}`;
