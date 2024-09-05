@@ -62,7 +62,7 @@ const BlogPost = () => {
 
     // Custom image renderer for handling relative image paths
     img: ({ alt, src }) => {
-		const imageUrl = src
+		const imageUrl = `../${src}`
 	  console.log(imageUrl);
       return <img src={imageUrl} alt={alt} style={{ maxWidth: '100%', height: 'auto' }} />;
     },
