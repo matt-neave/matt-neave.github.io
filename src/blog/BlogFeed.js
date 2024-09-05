@@ -31,13 +31,14 @@ const BlogFeed = ({ onSelectPost }) => {
 		  }
 		  const text = await response.text();
 		  // Extract metadata and content
-		  const { title, date, author, content } = parseMetadata(text);
+		  const { title, date, author, tags, content } = parseMetadata(text);
 	  
 		  return {
 			id: index + 1, // Use index or a unique identifier
 			title,
 			date,
 			author,
+			tags,
 			content,
 		  };
 		})
