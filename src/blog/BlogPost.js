@@ -99,7 +99,6 @@ const BlogPost = () => {
 
   return (
     <div className="blog-post">
-      <h1>{title}</h1>
       <p>Date: {date} | Author: {author}</p>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
