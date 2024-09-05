@@ -33,7 +33,6 @@ function Home() {
 
   return (
     <>
-	  <img src="images/logo512.png" />
       <h1 className="title">Matt Neave — Software Engineer</h1>
       <p className="description">
         Matt Neave is a software engineer based in London. He graduated from Imperial College London in 2024 with a Master's degree in Computing.
