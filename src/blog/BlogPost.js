@@ -61,11 +61,23 @@ const BlogPost = () => {
     },
 
     // Custom image renderer for handling relative image paths
-    img: ({ alt, src }) => {
-		const imageUrl = `../${src}`
-	  console.log(imageUrl);
-      return <img src={imageUrl} alt={alt} style={{ maxWidth: '100%', height: 'auto' }} />;
-    },
+	img: ({ alt, src }) => {
+		const imageUrl = `../${src}`;
+		console.log(imageUrl);
+  
+		return (
+		<img
+			src={imageUrl}
+			alt={alt}
+			style={{
+				maxWidth: '60%',    // Set a smaller maximum width for the image (adjust as needed)
+				height: 'auto',     // Keep the aspect ratio
+				display: 'block',   // Display the image as a block element
+				margin: '20px auto' // Center the image and add some margin above and below
+			}}
+		/>
+		);
+	},
   };
 
   return (
