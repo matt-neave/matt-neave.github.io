@@ -10,4 +10,4 @@ tags: Godot
 GMTK 2024 Game Jam DevLog.
 
 
-![test image](./personalSite/shape_esacape_0.png)
+![test image](./personalSite/images/shape_esacape_0.png)
