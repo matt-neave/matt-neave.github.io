@@ -9,7 +9,6 @@ export const parseMetadata = (markdownText) => {
 	  const [, title, date, author, tags, content] = match;
 	  // Split tags by comma and trim whitespace
 	  const tagList = tags.split(',').map(tag => tag.trim());
-	  console.log(tagList)
 	  return {
 		title,
 		date,
