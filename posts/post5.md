@@ -7,7 +7,7 @@ tags: Godot
 
 # Proximity Chat in Godot
 
-There has been a recent trend in multiplayer games, where a proximity-based voice chat is a core feature within the main game loop. Two examples of this include [Lethal Company](link) and [](link). I thought it would be an interesting exercise to look into how proximity chat can be implemented in Godot, and now I will share how to setup proximity chat in Godot.
+There has been a recent trend in multiplayer games, where a proximity-based voice chat is a core feature within the main game loop. Two examples of this include [Lethal Company](https://en.wikipedia.org/wiki/Lethal_Company) and [Lockdown Protocol](https://en.wikipedia.org/wiki/Lockdown). I thought it would be an interesting exercise to look into how proximity chat can be implemented in Godot, and now I will share how to setup proximity chat in Godot.
 
 ## Introduction to the Nodes
 
@@ -21,7 +21,7 @@ Now we understand the nodes we will use, let's look at a basic setup. In this ex
 
 In a 2D space, we will use an `AudioStreamPlayer2D`, and similar steps can be followed for a 3D space. As we want our chat system to be localised by player positions, we attach both these to our player scene. Let's name one `MicrophoneInput` and the other `VoipOutput` for clarity. In this context, `voip` stands for voice-over-internet-protocol. We can reference both of these in a script attached to our player.
 
-```godot
+```gdscript
 @onready var inp: AudioStreamPlayer2D = $MicrophoneInput
 @export var out: AudioStreamPlayer2D
 ```
@@ -40,7 +40,7 @@ We now have everything setup. We can finally take on the main programming of the
 
 First, we add a `AudioStreamMicrophone` to our input `AudioStreamPlayer`.
 
-```godot
+```gdscript
 var playback: AudioStreamGeneratorPlayback
 var effect: AudioCaptureEffect
 
@@ -61,7 +61,7 @@ We also grab `playback`, which is a generator used for playing the audio receive
 
 Now we have a microphone attached to our input audio player, we can process both audio players each frame. We need to write a function to capture input, and a function to process received data.
 
-```godot
+```gdscript
 func _process(_delta):
 	if is_multiplayer_authority():
 		_process_mic()
@@ -70,7 +70,7 @@ func _process(_delta):
 
 We ensure we only capture input if we are the client's authority.
 
-```godot
+```gdscript
 func _process_mic():
 	var inp_data : PackedVector2Array = effect.get_buffer(effect.get_frames_available())
 	
@@ -89,7 +89,7 @@ func _process_mic():
 
 We capture the microphone input using the `AudioCaptureEffect` we setup. This returns us a `PackedVector2Array`, which we can process and send to all the other peers using an rpc.
 
-```godot
+```gdscript
 @rpc("any_peer", "call_remote", "unreliable_ordered")
 func send_data(data: PackedFloat32Array):
 	receive_buffer.append_array(data)
@@ -99,7 +99,7 @@ We ensure our remote-procedure call uses UDP using "unreliable_ordered", to redu
 
 Finally, we can process the data we receive from other peers.
 
-```godot
+```gdscript
 var receive_buffer := PackedFloat32Array()
 
 func _process_voice():
@@ -115,7 +115,7 @@ We push the data we received from RPC calls to our output generator `playback`.
 
 We can control the proximity our player hears other players by adjusting the `max_distance` property on "VoipOutput".
 
-```godot
+```gdscript
 func _ready():
 	out.max_distance = 250  # 250 pixels
 ```
