@@ -1,21 +1,13 @@
 ---
-title: "Safety, Liveness and Elixir"
-date: "2024-08-27"
+title: "Proximity Chat in Godot"
+date: "2024-09-05"
 author: "Matt Neave"
-tags: Elixir, Rust
+tags: Godot
 ---
 
-# Safety, Liveness and Elixir
+# Proximity Chat in Godot
 
-Writing correct Elixir programs.
-
-```Elixir
-defp start do
-	IO.puts "Hello World!"
-end
-```
-
-![test image](./images/shape_escape_0.png)
+Exploring Proximity Chat in Godot.
 
 # Meas retinentibus Lucifero cuspidis
 
