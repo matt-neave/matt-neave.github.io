@@ -1,6 +1,6 @@
 ---
 title: "Writing a Compiler in Rust"
-date: "2024-09-06"
+date: "2025-09-06"
 author: "Matt Neave"
 tags: Rust, Pest
 ---

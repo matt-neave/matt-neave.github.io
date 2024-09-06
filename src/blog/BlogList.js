@@ -8,6 +8,13 @@ const isNewPost = (date) => {
   return postDate > threeMonthsAgo;
 };
 
+// Function to check if a post is coming soon (date is in the future)
+const isComingSoon = (date) => {
+  const postDate = new Date(date);
+  const currentDate = new Date();
+  return postDate > currentDate;
+};
+
 const BlogList = ({ posts, onSelectPost }) => {
   return (
     <div className="blog-list">
@@ -21,6 +28,9 @@ const BlogList = ({ posts, onSelectPost }) => {
             </div>
             {isNewPost(post.date) && (
               <span className="new-label">New</span>
+            )}
+			{isComingSoon(post.date) && (
+              <span className="soon-label">Coming Soon</span>
             )}
           </div>
           <h3>{post.title}</h3>

@@ -111,6 +111,19 @@ body::after {
     display: inline-block;
 }
 
+/* Adjust .new-label */
+.soon-label {
+    background-color: #c76f03;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 10px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
 .post-summary h3 {
     color: #ff8c00;
     margin: 0;
