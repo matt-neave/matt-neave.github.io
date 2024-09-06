@@ -5,7 +5,7 @@ const isNewPost = (date) => {
   const postDate = new Date(date);
   const currentDate = new Date();
   const threeMonthsAgo = new Date(currentDate.setMonth(currentDate.getMonth() - 3));
-  return postDate > threeMonthsAgo;
+  return postDate > threeMonthsAgo && postDate <= new Date();
 };
 
 // Function to check if a post is coming soon (date is in the future)
