@@ -1,5 +1,6 @@
 ---
 title: "Revisiting Paxos"
+date: "2024-08-27"
 author: "Matt Neave"
 tags: Elixir, Rust
 ---
