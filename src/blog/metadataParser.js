@@ -19,7 +19,7 @@ export const parseMetadata = (markdownText) => {
 	} else {
 	  return {
 		title: 'Unknown',
-		date: 'Unknown',
+		date: 'Coming Soon',
 		author: 'Unknown',
 		tags: [],
 		content: markdownText

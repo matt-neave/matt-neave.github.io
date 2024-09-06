@@ -19,7 +19,7 @@ We can easily attach an `AudioStreamMicrophone` to an `AudioStreamPlayer` to pla
 
 Now we understand the nodes we will use, let's look at a basic setup. In this example, we will use two `AudioStreamPlayers`; one for capturing our microphone, and one for playing the other microphones.
 
-In a 2D space, we will use an `AudioStreamPlayer2D`, and similar steps can be followed for a 3D space. As we want our chat system to be localised by player positions, we attach both these to our player scene. Let's name one `MicrophoneInput` and the other `VoipOutput` for clarity. In this context, `voip` stands for voice-over-internet-protocol. We can reference both of these in a script attached to our player.
+In a 2D space, we will use an `AudioStreamPlayer2D`, and similar steps can be followed for a 3D space. As we want our chat system to be localised by player positions, we attach both these to our player scene. Let's name one `MicrophoneInput` and the other `VoipOutput` for clarity. In this context, `VoIP` stands for Voice over Internet Protocol. We can reference both of these in a script attached to our player.
 
 ```gdscript
 @onready var inp: AudioStreamPlayer2D = $MicrophoneInput
@@ -34,9 +34,9 @@ Before we continue, we need to add two new audio buses to route our system throu
 
 For the capture to work, we must change one final setting. In `Project` -> `General` -> `Audio` -> `Driver`, with `Advanced Settings` turned on, we can enable `Enable Input`.
 
-## Programming The Voice Over Internet Protocol (VOIP)
+## Programming Voice over Internet Protocol (VoIP)
 
-We now have everything setup. We can finally take on the main programming of the protocol. We have to capture microphone input using the capture effect we added, and send it to all the peers in the network.
+We now have everything setup. We can finally take on the main programming of VoIP. We have to capture microphone input using the capture effect we added, and send it to all the peers in the network.
 
 First, we add a `AudioStreamMicrophone` to our input `AudioStreamPlayer`.
 
@@ -125,3 +125,5 @@ Make sure to attach the output `AudioStreamPlayer` to the node with the script a
 ## Conclusion
 
 We have now seen how to setup proximity chat in godot! The process involved us capturing microphone input, sending it to our peers with an RPC and processing the data we receive. 
+
+Credit to FinePointCGI for an incredible video on the topic on [VoIP in Godot](https://www.youtube.com/watch?v=AomgXrpiRmM) and passthecodine for a [basic introduction](https://www.reddit.com/r/godot/comments/186yn4o/voip_in_godot_basic_overview_not_full_tutorial/)!

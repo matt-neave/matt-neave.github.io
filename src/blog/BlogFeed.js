@@ -17,6 +17,9 @@ const BlogFeed = ({ onSelectPost }) => {
         'post3.md',
         'post4.md',
 		'post5.md',
+		'post6.md',
+		'post7.md',
+		'post8.md',
       ];
 
 	  const username = 'matt-neave';
