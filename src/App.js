@@ -8,7 +8,7 @@ import BlogPost from './blog/BlogPost';
 
 function App() {
   return (
-    <Router basename='personalSite'>
+    <Router>
       <div className="container">
         <header className="header">
           <div className="logo">Matt Neave</div>
