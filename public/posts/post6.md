@@ -9,3 +9,7 @@ tags: Godot
 
 A simple technique for controlling entity spawns as time passes in Godot.
 
+Other cool topics:
+Roguelike inventory
+Passive and active effects
+Managing damage in godot
