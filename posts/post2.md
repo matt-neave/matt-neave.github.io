@@ -1,45 +1,24 @@
 ---
-title: "Untitled TD"
-date: "2025-08-28"
+title: "My First Game - Godot"
+date: "2024-09-11"
 author: "Matt Neave"
 tags: Godot
 ---
 
-# Untitled TD
+![Untitled TD gameplay](images/td_0.png)
 
-Devlog 1 about **Untitled TD**.
+# Creating a Video Game In Godot (Untitled TD DevLog 1)
 
-# Meas retinentibus Lucifero cuspidis
+I am making a game! Growing up, it was one of my dreams to make a game. There is something special about having a creative outlet to explore in your downtime.
 
-## Mihi populi quas pallet de nutricis multi
+Before I ever knew about the wonders of **game engines** (such as [Unity](https://unity.com/) and [Godot](https://godotengine.org/)), I was making games using a Python library called [Pygame](https://www.pygame.org/news). Pygame is a great choice for learning the basics of writing a game! Whilst it doesn't provide all of the features a **game engine** might, it provides a basic API for rendering visual output on a canvas. The lack of an underlying game results in game developers having more freedom over how to implement features that may be common within game engines; take physics calculations as an example. If you want a *bullet* to follow the physics of **projectile motion**, you have to implement the equations **yourself**. As well as ensure that the forces and velocities are calculated each iteration of the **game loop**.
 
-Lorem markdownum regia conspicui crocique celebri **pudore**, petendo **tacti
-genas patefecit** subsunt quoque in Pentheus. Manente quae plena tanto infans
-corpus imagine Lucifero dona motusque terras.
+With my basic background in **pygame** from many years ago, this time round, I decided to create a game in **Godot**.
 
-Adulterium bracchia *iurare* Hesperiae fratres stamina aetherias secus geminas,
-sed spe, adversos Cyparissus ad inter illa: [Ecce](http://saucius.net/). Sic
-inquit meritam **tantumque** sontem rectoque.
+## Why Godot?
 
-## Ait sed atque vulnera vidit
+## My Experience with Godot
 
-Adicit arcus et auro [parantem indueret](http://petit.net/illa.html) Graias me
-superi de Troiae, tenues salutent semine ab, corpora fuit fuit. Natura foret
-subigebat riguo reminiscitur iunctam det undas dapibusque Alcides rapacibus
-mater, Strymone flavae.
+## Progress
 
-> Caducum cum. Sed est tamen.
-
-## Aequorei et ignis rursus
-
-Oculis triennia onus: aliudve iam nobilitas natisque Helicen repercussae carmina
-currus a ensis. Clamor fide qui finire exclamo telluris et **equum purpureum**
-petis, hac de narrat, collesque.
-
-Sua precor Tyrrhenia quae. Illi tamen saepe auratis Orio vulnus oblitus Penthea
-aurea mulcendaque dixit! Haec qua.
-
-Consequar quoque ducentem **ferebat**, auras sed, regem et haec cum. Non Error
-diffudit trahenti *Palameden pondere* moresque ut equos: sors oculos in mihi en.
-Thalamos emissi viam, fuit vulgat numine! Asper pedibusque frater, de robustior
-laurea potest dabat utve ipse.
+## The Future
