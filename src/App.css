@@ -297,7 +297,7 @@ body::after {
 	padding: 8px 16px;
 	background-color: #2e2e2e;
 	color: #ffffff;
-	border: 2px solid #ff8c00;
+	border: 2px solid #2e2e2e;
 	border-radius: 12px;
 	cursor: pointer;
 	font-family: 'Quicksand', sans-serif;
@@ -307,7 +307,7 @@ body::after {
   
   .page-button:hover {
 	background-color: #3a3a3a;
-	border-color: #00eaff;
+	border-color: #ff8c00;
   }
   
   .page-button:disabled {
@@ -341,7 +341,7 @@ body::after {
 	padding: 8px;
 	background-color: #2e2e2e;
 	color: #ffffff;
-	border: 2px solid #ff8c00;
+	border: 2px solid #2e2e2e;
 	border-radius: 8px;
 	cursor: pointer;
 	font-family: 'Quicksand', sans-serif;
@@ -349,6 +349,6 @@ body::after {
   }
   
   #tag-filter:hover {
-	border-color: #00eaff;
+	border-color: #ff8c00;
   }
   

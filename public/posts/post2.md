@@ -17,8 +17,12 @@ With my basic background in **pygame** from many years ago, this time round, I d
 
 ## Why Godot?
 
+![Untitled TD gameplay](images/td_1.png)
+
+
 ## My Experience with Godot
 
 ## Progress
+
 
 ## The Future
