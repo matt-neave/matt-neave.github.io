@@ -1,257 +1,251 @@
 /* src/App.css */
 
-body {
-    margin: 0;
-    font-family: 'Quicksand', sans-serif;
-    background-color: #1e1e1e; /* Slightly gray background */
-    color: #ffffff;
-    overflow-x: hidden; /* Prevents scrollbars from appearing due to the animation */
-    position: relative;
-}
 
-/* Apply the moving trails effect to the body */
-body::before, body::after {
-    content: '';
-    position: fixed; /* Use fixed position to ensure it covers the entire viewport */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 10%);
-    background-size: 20px 20px; /* Default size for small screens */
-    opacity: 0.5;
-    animation: moveTrails 20s linear infinite;
-    z-index: -1; /* Ensure it stays behind all other content */
-}
-
-body::after {
-    animation-delay: -10s;
-    opacity: 0.3;
-}
-
-@media (min-width: 768px) {
-    body::before, body::after {
-        background-size: 30px 30px; /* Larger size for tablets and small laptops */
-    }
-}
-
-@media (min-width: 1024px) {
-    body::before, body::after {
-        background-size: 40px 40px; /* Larger size for larger laptops and desktops */
-    }
-}
-
-/* Remove the animation from .container */
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-    position: relative;
-    min-height: 100vh; /* Ensure it fills the viewport initially, but grows with content */
-}
-
-/* Rest of your styles */
-
-@keyframes moveTrails {
-    0% {
-        transform: translate3d(-100%, 0, 0);
-    }
-    100% {
-        transform: translate3d(100%, 0, 0);
-    }
-}
-
-/* Center the main content and add some horizontal offset */
+/* Main content styling */
 .main-content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: #ffffff;
-    padding-top: 15%;
-    max-width: 70%; /* Limit the width to ensure it's not too wide */
-    margin-left: 10%; /* Offset to the left */
+    color: #333333;
+    padding-top: 10%;
+    max-width: 80%;
+    margin-left: 10%;
 }
 
-/* Additional styles */
+/* Title - Pastel multi-color fade with mouse interaction */
+.title {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #a8d0e6, #f6c9d7, #f8e6a1, #a2d5f2, #c0c9e4); /* Multi-color pastel gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400% 400%; /* Creates the smooth fade effect */
+    transition: background-position 0.4s ease;
+}
 
-/* New styles for tag labels */
+
+/* JS code to move the gradient based on mouse position */
+/* General body and content styling */
+body {
+	margin: 0;
+	font-family: 'Quicksand', sans-serif;
+	background-color: #f5f5f7; /* Soft light gray */
+	color: #333333;
+	overflow-x: hidden;
+	position: relative;
+  }
+  
+  /* Header Styling */
+  .header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 30px;
+	background-color: #ffffff;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10; /* Ensures it's above other content */
+	height: 60px; /* Make header height smaller */
+	width: 100%;
+	padding: 10px 30px; /* Adjust padding to be more compact */
+	transition: all 0.3s ease; /* Smooth transition for background */
+  }
+  
+  /* Logo Text (your name) */
+  .logo {
+	font-weight: bold;
+	font-size: 1.8rem;
+	color: #333333;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+  }
+  
+  /* Social Links in Header */
+  .social-links {
+	display: flex;
+	gap: 20px;
+  }
+  
+  .social-link {
+	font-size: 1.3rem; /* Slightly larger font size for icons */
+	color: #a8d0e6; /* Pastel blue for social icons */
+	text-decoration: none;
+	transition: color 0.3s ease;
+  }
+  
+  .social-link:hover {
+	color: #2a6fb5; /* Darker blue when hovered */
+  }
+  
+  .social-link i {
+	font-size: 1.4rem; /* Adjust the size of icons */
+  }
+  
+  /* Main content area adjusted to avoid header overlap */
+  .main-content {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: #333333;
+	padding-top: 90px; /* Increased padding-top to prevent content from being hidden under fixed header */
+	max-width: 80%;
+	margin-left: 10%;
+  }
+  
+  /* Title - Pastel multi-color fade with mouse interaction */
+  .title {
+	font-size: 4rem;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	margin-bottom: 20px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	background: linear-gradient(135deg, #a8d0e6, #f6c9d7, #f8e6a1, #a2d5f2, #c0c9e4); /* Multi-color pastel gradient */
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-size: 400% 400%; /* Creates the smooth fade effect */
+	transition: background-position 0.4s ease;
+  }
+  
+/* Description styling (updated) */
+.description {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    margin-top: 20px;
+    max-width: 800px; /* Spans the same width as the title */
+    color: #666666;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-left: auto;
+    margin-right: auto; /* Ensure the description is centered like the title */
+}
+
+/* Tag label with pastel blue */
 .tag-label {
-    background-color: #ff8c00;
+    background-color: #a8d0e6; /* Pastel blue */
     color: #ffffff;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: bold;
     padding: 2px 8px;
     border-radius: 12px;
     margin-right: 8px;
     display: inline-block;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Flexbox to arrange tags on the left and new label on the right */
-.post-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+.tag-label:hover {
+    background-color: #b3cde0; /* Slightly darker pastel blue on hover */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Adjust .new-label */
-.new-label {
-    background-color: #ff8c00;
-    color: #ffffff;
-    font-size: 0.8rem;
-    font-weight: bold;
-    padding: 2px 8px;
-    border-radius: 12px;
-    margin-left: 10px;
-    vertical-align: middle;
-    display: inline-block;
-}
-
-/* Adjust .new-label */
-.soon-label {
-    background-color: #6b6b6b;
-    color: #ffffff;
-    font-size: 0.8rem;
-    font-weight: bold;
-    padding: 2px 8px;
-    border-radius: 12px;
-    margin-left: 10px;
-    vertical-align: middle;
-    display: inline-block;
-}
-
-.post-summary h3 {
-    color: #ff8c00;
-    margin: 0;
-}
-
-.post-summary p {
-    color: #bbbbbb;
-    margin: 5px 0;
-}
-
-
-/* Style for the divider and the button */
-.divider {
-    margin: 40px 0; /* Space around the divider */
-    text-align: center; /* Center align the button */
-}
-
-.read-more-button {
-    padding: 10px 20px;
-    border: 2px solid #ffffff;
-    background: none;
+/* Button styles with pastel blue */
+button {
+    padding: 12px 24px;
+    border: 2px solid #a8d0e6; /* Pastel blue border */
+    background-color: #ffffff;
+    color: #a8d0e6; /* Pastel blue color for buttons */
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
     font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px; /* Space buttons away from bottom */
+}
+
+button:hover {
+    background: linear-gradient(135deg, #a8d0e6, #b3cde0); /* Pastel blue gradient */
     color: #ffffff;
-    transition: background 0.3s ease;
+    border: 2px solid transparent;
 }
 
-.read-more-button:hover {
-    background: linear-gradient(45deg, #ff007f, #ff00ff, #00eaff, #00ff88, #ff8c00);
-    color: #000;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1rem;
-}
-
-.logo {
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #ffffff;
-}
-
-.contact-button {
-    padding: 10px 20px;
-    border: 2px solid #ffffff;
-    background: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-    color: #ffffff;
-    transition: background 0.3s ease;
-}
-
-.contact-button:hover {
-    background: linear-gradient(45deg, #ff007f, #ff00ff, #00eaff, #00ff88, #ff8c00);
-    color: #000;
-}
-
-.title {
-    font-size: 3rem;
-    font-weight: bold;
-    line-height: 1.2;
-}
-
-.description {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    margin-top: 20px;
-    max-width: 600px;
-}
-
-.rainbow {
-    background: linear-gradient(45deg, #ff007f, #ff00ff, #00eaff, #00ff88, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-    font-weight: bold;
-}
-
-.blog-feed {
-    margin-top: 40px;
-}
-
+/* Post Summaries */
 .post-summary {
-    background-color: #2e2e2e;
+    background-color: #ffffff;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
-    color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    color: #333333;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Hover effects to make it more premium */
 .post-summary:hover {
-    background-color: #3a3a3a;
+    transform: translateY(-8px); /* Slightly larger movement for a more premium feel */
+    background: linear-gradient(135deg, #f0f0f0, #e9e9e9); /* Soft gradient background */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow for "lifting" effect */
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* For the title inside the post-summary */
 .post-summary h3 {
-    color: #ff8c00;
+    color: #a8d0e6; /* Pastel blue for titles */
+    transition: color 0.3s ease;
 }
 
+.post-summary:hover h3 {
+    color: #54b7f0; /* Slightly darker blue for a highlighted effect */
+}
+
+/* Text inside the post-summary */
 .post-summary p {
-    color: #bbbbbb;
+    color: #777777;
     margin: 5px 0;
+    transition: color 0.3s ease;
 }
 
+/* On hover, change paragraph text to a darker gray */
+.post-summary:hover p {
+    color: #555555;
+}
+
+/* Optional: Change the 'Coming Soon' and 'New' tags on hover */
+.post-summary:hover .soon-label,
+.post-summary:hover .new-label {
+    background-color: #c3e0ff; /* Slightly darker blue on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+
+/* Post Page */
 .post {
-    background-color: #2e2e2e;
+    background-color: #ffffff;
     border-radius: 8px;
     padding: 20px;
     max-width: 800px;
     margin-bottom: 20px;
-    color: #ffffff;
+    color: #333333;
     text-align: left;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .post h1, .post h2, .post h3 {
-    color: #ff8c00;
+    color: #a8d0e6;
 }
 
+/* Links */
 .post a {
-    color: #00eaff;
+    color: #a8d0e6; /* Pastel blue links */
+    transition: color 0.3s ease;
+}
+
+.post a:hover {
+    color: #b3cde0; /* Slightly darker pastel blue for hover effect */
 }
 
 .post ul {
@@ -260,95 +254,140 @@ body::after {
 }
 
 .post blockquote {
-    border-left: 4px solid #ff8c00;
+    border-left: 4px solid #a8d0e6; /* Pastel blue blockquote */
     padding-left: 16px;
-    color: #bbbbbb;
+    color: #777777;
 }
 
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.page-button {
+    padding: 8px 16px;
+    background-color: #ffffff;
+    color: #a8d0e6;
+    border: 2px solid #a8d0e6;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.page-button:hover {
+    background-color: #f9f9f9;
+    color: #ffffff;
+    border-color: transparent;
+}
+
+.page-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-button.active {
+    background-color: #a8d0e6;
+    color: #ffffff;
+}
+
+/* Filter Container */
+.filter-container {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333333;
+}
+
+.filter-container label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#tag-filter {
+    padding: 8px;
+    background-color: #ffffff;
+    color: #a8d0e6;
+    border: 2px solid #a8d0e6;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+}
+
+#tag-filter:hover {
+    border-color: #b3cde0;
+}
+
+/* Back button */
 .back-button {
     margin-bottom: 20px;
-    padding: 10px 20px;
-    border: 2px solid #ffffff;
-    background: none;
+    padding: 12px 24px;
+    border: 2px solid #a8d0e6;
+    background-color: #ffffff;
+    color: #a8d0e6;
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
     font-size: 1rem;
-    color: #ffffff;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .back-button:hover {
-    background: linear-gradient(45deg, #ff007f, #ff00ff, #00eaff, #00ff88, #ff8c00);
-    color: #000;
+    background-color: #f9f9f9;
+    color: #ffffff;
+    border-color: transparent;
 }
 
-/* Pagination container */
-.pagination {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 20px;
-	gap: 10px; /* Space between pagination buttons */
-  }
-  
-  /* Pagination buttons */
-  .page-button {
-	padding: 8px 16px;
-	background-color: #2e2e2e;
-	color: #ffffff;
-	border: 2px solid #2e2e2e;
-	border-radius: 12px;
-	cursor: pointer;
-	font-family: 'Quicksand', sans-serif;
-	font-size: 1rem;
-	transition: background-color 0.3s ease, border-color 0.3s ease;
-  }
-  
-  .page-button:hover {
-	background-color: #3a3a3a;
-	border-color: #ff8c00;
-  }
-  
-  .page-button:disabled {
-	opacity: 0.5;
-	cursor: not-allowed;
-  }
-  
-  /* Active page button styling */
-  .page-button.active {
-	background-color: #ff8c00;
-	color: #000000;
-	font-weight: bold;
-  }
+/* Style for the 'Coming Soon' tag */
+.soon-label, .new-label {
+    background-color: #e0f2ff; /* Soft pastel blue background */
+    color: #3a8fc4; /* Slightly darker shade of blue for contrast */
+    font-size: 0.8rem; /* Smaller font size */
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 15px; /* Rounded corners for a tag-like feel */
+    margin-left: auto; /* Push it to the right */
+    display: inline-block;
+    position: absolute;
+    right: 20px; /* Right-aligned */
+    top: 50%;
+    transform: translateY(-50%); /* Vertically center it */
+    white-space: nowrap; /* Prevent text wrapping */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover */
+}
 
-  
-  /* Filter Container */
-  .filter-container {
-	margin-bottom: 20px;
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	color: #ffffff;
-  }
-  
-  .filter-container label {
-	font-weight: bold;
-	font-size: 1rem;
-  }
-  
-  #tag-filter {
-	padding: 8px;
-	background-color: #2e2e2e;
-	color: #ffffff;
-	border: 2px solid #2e2e2e;
-	border-radius: 8px;
-	cursor: pointer;
-	font-family: 'Quicksand', sans-serif;
-	font-size: 1rem;
-  }
-  
-  #tag-filter:hover {
-	border-color: #ff8c00;
-  }
-  
+/* Hover effect */
+.soon-label:hover, .new-label:hover {
+    background-color: #c3e0ff; /* Slightly darker blue on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+/* Adjust post-summary to ensure label is correctly positioned */
+.post-summary {
+    position: relative; /* Ensure absolute positioning of the label works */
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.post-summary:hover {
+    background-color: #f0f0f0;
+}
+
+/* Optional: Adjust hover color for .post-summary to make it more visible */
+.post-summary:hover .soon-label,
+.post-summary:hover .new-label {
+    background-color: #c3e0ff; /* Slightly darker blue on hover */
+    color: #ffffff;
+}

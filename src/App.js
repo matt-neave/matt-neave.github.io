@@ -12,6 +12,17 @@ function App() {
       <div className="container">
         <header className="header">
           <div className="logo">Matt Neave</div>
+          <div className="social-links">
+            <a href="https://github.com/mattneave" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/mattneave/" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/mattneave" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-twitter"></i>
+            </a>
+          </div>
         </header>
         <main className="main-content">
           <Routes>
