@@ -3,12 +3,36 @@ import { HashRouter as Router, Route, Routes, useNavigate, useParams } from 'rea
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { ghcolors as codeStyling } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Use vscDarkPlus theme for syntax highlighting
-import { parseMetadata } from './metadataParser'; // Assuming you have a metadataParser utility
+import { ghcolors as codeStyling } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { parseMetadata } from './metadataParser';
+import { Clipboard } from 'lucide-react';
 
+const CopyButton = ({ text }) => {
+	const [showToast, setShowToast] = useState(false);
+  
+	const copyToClipboard = () => {
+	  navigator.clipboard.writeText(text);
+	  setShowToast(true);
+  
+	  // Hide the toast after 2 seconds
+	  setTimeout(() => setShowToast(false), 1900);
+	};
+  
+	return (
+	  <>
+		<button className="copy-button" onClick={copyToClipboard}>
+		  <Clipboard size={16} />
+		</button>
+  
+		{showToast && <div className="toast-notification">Copied to clipboard!</div>}
+	  </>
+	);
+};
+  
+  
 
 const BlogPost = () => {
-  const { id } = useParams(); // Get the post ID from the URL
+  const { id } = useParams();
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [author, setAuthor] = useState('');
@@ -34,7 +58,7 @@ const BlogPost = () => {
         setTitle(title);
         setDate(date);
         setAuthor(author);
-		setTags(tags);
+        setTags(tags);
         setContent(content);
       } catch (error) {
         console.error('Error loading post:', error);
@@ -44,79 +68,50 @@ const BlogPost = () => {
     loadPost();
   }, [id]);
 
-  // Custom renderers for ReactMarkdown to handle code blocks with syntax highlighting
   const renderers = {
     code: ({ node, inline, className, children, ...props }) => {
       const match = /language-(\w+)/.exec(className || '');
+      const codeString = String(children).replace(/\n$/, '');
+
       return !inline && match ? (
-        <SyntaxHighlighter
-          style={codeStyling} // Use the vscDarkPlus theme for syntax highlighting
-          language={match[1].toLowerCase()} // Use the language specified in the Markdown
-          PreTag="div"
-          {...props}
-        >
-          {String(children).replace(/\n$/, '')}
-        </SyntaxHighlighter>
+        <div style={{ position: 'relative' }}>
+          <CopyButton text={codeString} />
+          <SyntaxHighlighter style={codeStyling} language={match[1].toLowerCase()} PreTag="div" {...props}>
+            {codeString}
+          </SyntaxHighlighter>
+        </div>
       ) : (
         <code className={className} {...props}>
           {children}
         </code>
       );
     },
-
-	// Link renderer
-	a: ({ href, children }) => {
-		return (
-		  <a
-			href={href}
-			style={{
-			  color: '#7bb0cc', // Set the desired color for the link
-			  textDecoration: 'none' // Optional: Remove the underline from the link
-			}}
-			target="_blank" // Optional: Open the link in a new tab
-			rel="noopener noreferrer" // Security for external links
-		  >
-			{children}
-		  </a>
-		);
-	  },
-
-    // Custom image renderer for handling relative image paths
-	img: ({ alt, src }) => {
-		const imageUrl = `../${src}`;
-		console.log(imageUrl);
-  
-		return (
-		<img
-			src={imageUrl}
-			alt={alt}
-			style={{
-				maxWidth: '60%',    // Set a smaller maximum width for the image (adjust as needed)
-				height: 'auto',     // Keep the aspect ratio
-				display: 'block',   // Display the image as a block element
-				// margin: '20px auto' // Center the image and add some margin above and below				
-				margin: 'auto' // Center the image and add some margin above and below
-			}}
-		/>
-		);
-	},
+    a: ({ href, children }) => (
+      <a href={href} style={{ color: '#7bb0cc', textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    ),
+    img: ({ alt, src }) => (
+      <img
+        src={`../${src}`}
+        alt={alt}
+        style={{ maxWidth: '60%', height: 'auto', display: 'block', margin: 'auto' }}
+      />
+    ),
   };
 
   return (
     <div className="blog-post">
-	  <div className="blog-title">{title}</div>
+      <div className="blog-title">{title}</div>
       <button className="back-button" onClick={() => navigate("/")}>Back to list</button>
       <p>Date: {date} | Author: {author}</p>
-	  <div className="blog-tags">
+      <div className="blog-tags">
         {tags.map((tag, index) => (
           <span key={index} className="tag-label">{tag}</span>
         ))}
       </div>
-	  <hr className="divide"/>
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={renderers} // Use custom renderers to handle code blocks and images
-      >
+      <hr className="divide" />
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={renderers}>
         {content}
       </ReactMarkdown>
     </div>

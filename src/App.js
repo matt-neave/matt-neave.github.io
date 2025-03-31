@@ -30,6 +30,10 @@ function App() {
             <Route path="/post/:id" element={<PostView />} />
           </Routes>
         </main>
+		<footer className="footer">
+  			© {new Date().getFullYear()} Matt Neave. All rights reserved.
+		</footer>
+
       </div>
     </Router>
   );
