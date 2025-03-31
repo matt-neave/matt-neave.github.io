@@ -328,6 +328,7 @@ button:hover {
 /* Back button */
 .back-button {
     margin-bottom: 20px;
+	margin-top: 10px;
     padding: 12px 24px;
     border: 2px solid #a8d0e6;
     background-color: #ffffff;
@@ -358,8 +359,8 @@ button:hover {
     display: inline-block;
     position: absolute;
     right: 20px; /* Right-aligned */
-    top: 50%;
-    transform: translateY(-50%); /* Vertically center it */
+    top: 10%;
+    transform: translateY(-10%); /* Vertically center it */
     white-space: nowrap; /* Prevent text wrapping */
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover */
 }
