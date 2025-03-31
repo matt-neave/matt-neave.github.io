@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { ghcolors as codeStyling } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Use vscDarkPlus theme for syntax highlighting
 import { parseMetadata } from './metadataParser'; // Assuming you have a metadataParser utility
+
 
 const BlogPost = () => {
   const { id } = useParams(); // Get the post ID from the URL
@@ -13,6 +14,7 @@ const BlogPost = () => {
   const [author, setAuthor] = useState('');
   const [content, setContent] = useState('');
   const [tags, setTags] = useState([]);
+  const navigate = useNavigate();
   
   useEffect(() => {
     const loadPost = async () => {
@@ -102,12 +104,15 @@ const BlogPost = () => {
 
   return (
     <div className="blog-post">
+	  <div className="blog-title">{title}</div>
+      <button className="back-button" onClick={() => navigate("/")}>Back to list</button>
       <p>Date: {date} | Author: {author}</p>
 	  <div className="blog-tags">
         {tags.map((tag, index) => (
           <span key={index} className="tag-label">{tag}</span>
         ))}
       </div>
+	  <hr className="divide"/>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={renderers} // Use custom renderers to handle code blocks and images

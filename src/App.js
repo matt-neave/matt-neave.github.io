@@ -60,7 +60,6 @@ function PostView() {
 
   return (
     <>
-      <button className="back-button" onClick={() => navigate(-1)}>Back to list</button>
       <BlogPost />
     </>
   );

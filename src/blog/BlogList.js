@@ -18,7 +18,7 @@ const isComingSoon = (date) => {
 const BlogList = ({ posts, onSelectPost }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedTag, setSelectedTag] = useState('All');
-  const postsPerPage = 3;
+  const postsPerPage = 5;
 
   // Extract unique tags from posts
   const allTags = ['All', ...new Set(posts.flatMap(post => post.tags))];

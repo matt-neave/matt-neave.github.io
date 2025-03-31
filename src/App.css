@@ -337,6 +337,7 @@ button:hover {
     font-weight: bold;
     font-size: 1rem;
     transition: all 0.3s ease;
+	float: right;
 }
 
 .back-button:hover {
@@ -390,4 +391,29 @@ button:hover {
 .post-summary:hover .new-label {
     background-color: #c3e0ff; /* Slightly darker blue on hover */
     color: #ffffff;
+}
+
+/* Title - Pastel multi-color fade with mouse interaction */
+.blog-title {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 20px;
+	margin-top: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: black; /* Multi-color pastel gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400% 400%; /* Creates the smooth fade effect */
+    transition: background-position 0.4s ease;
+}
+
+.divide {
+    width: 100%;
+    margin-top: 40px;
+    border: none; /* Removes default hr styling */
+    height: 1px; /* Thin line */
+    background-color: #ddd; /* Light gray for subtlety */
+    opacity: 0.7; /* Slight transparency */
 }
