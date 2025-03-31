@@ -13,10 +13,10 @@ function App() {
         <header className="header">
           <div className="logo">Matt Neave</div>
           <div className="social-links">
-            <a href="https://github.com/mattneave" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href="https://github.com/matt-neave" target="_blank" rel="noopener noreferrer" className="social-link">
               <i className="fab fa-github"></i>
             </a>
-            <a href="https://www.linkedin.com/in/mattneave/" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href="https://www.linkedin.com/in/matt-neave/" target="_blank" rel="noopener noreferrer" className="social-link">
               <i className="fab fa-linkedin"></i>
             </a>
             <a href="https://twitter.com/mattneave" target="_blank" rel="noopener noreferrer" className="social-link">

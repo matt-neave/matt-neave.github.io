@@ -22,7 +22,7 @@
     margin-bottom: 20px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #a8d0e6, #f6c9d7, #f8e6a1, #a2d5f2, #c0c9e4); /* Multi-color pastel gradient */
+    background: linear-gradient(135deg, #a8d0e6, #f6c9d7, #f8e6a1, #66c7ff, #c0c9e4); /* Multi-color pastel gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 400% 400%; /* Creates the smooth fade effect */

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Use vscDarkPlus theme for syntax highlighting
+import { ghcolors as codeStyling } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Use vscDarkPlus theme for syntax highlighting
 import { parseMetadata } from './metadataParser'; // Assuming you have a metadataParser utility
 
 const BlogPost = () => {
@@ -12,7 +12,8 @@ const BlogPost = () => {
   const [date, setDate] = useState('');
   const [author, setAuthor] = useState('');
   const [content, setContent] = useState('');
-
+  const [tags, setTags] = useState([]);
+  
   useEffect(() => {
     const loadPost = async () => {
       try {
@@ -27,10 +28,11 @@ const BlogPost = () => {
         }
 
         const text = await response.text();
-        const { title, date, author, content } = parseMetadata(text);
+        const { title, date, author, tags, content } = parseMetadata(text);
         setTitle(title);
         setDate(date);
         setAuthor(author);
+		setTags(tags);
         setContent(content);
       } catch (error) {
         console.error('Error loading post:', error);
@@ -46,7 +48,7 @@ const BlogPost = () => {
       const match = /language-(\w+)/.exec(className || '');
       return !inline && match ? (
         <SyntaxHighlighter
-          style={vscDarkPlus} // Use the vscDarkPlus theme for syntax highlighting
+          style={codeStyling} // Use the vscDarkPlus theme for syntax highlighting
           language={match[1].toLowerCase()} // Use the language specified in the Markdown
           PreTag="div"
           {...props}
@@ -66,7 +68,7 @@ const BlogPost = () => {
 		  <a
 			href={href}
 			style={{
-			  color: '#ff8c00', // Set the desired color for the link
+			  color: '#7bb0cc', // Set the desired color for the link
 			  textDecoration: 'none' // Optional: Remove the underline from the link
 			}}
 			target="_blank" // Optional: Open the link in a new tab
@@ -101,6 +103,11 @@ const BlogPost = () => {
   return (
     <div className="blog-post">
       <p>Date: {date} | Author: {author}</p>
+	  <div className="blog-tags">
+        {tags.map((tag, index) => (
+          <span key={index} className="tag-label">{tag}</span>
+        ))}
+      </div>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={renderers} // Use custom renderers to handle code blocks and images
