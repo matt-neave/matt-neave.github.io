@@ -31,7 +31,7 @@ function App() {
           </Routes>
         </main>
 		<footer className="footer">
-  			© {new Date().getFullYear()} Matt Neave. All rights reserved.
+  			© {new Date().getFullYear()} Matt Neave. All rights reserved. <img src="favicon.ico" style={{ height: "3em", verticalAlign: "middle" }} />
 		</footer>
 
       </div>
