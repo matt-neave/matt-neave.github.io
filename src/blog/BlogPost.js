@@ -102,8 +102,8 @@ const BlogPost = () => {
 		const childText = children?.[1]?.props?.children?.[0]?.props?.children || "";
 		let className = "tip-box";
 		if (typeof childText === "string") {
-		  if (childText.includes("WARNING")) className = "warning-box";
-		  else if (childText.includes("ALERT")) className = "alert-box";
+		  if (childText.includes("WARNING")) {className = "warning-box"; }
+		  else if (childText.includes("ALERT")) {className = "alert-box";}
 		}
 	  
 		return <div className={className}>{children}</div>;
