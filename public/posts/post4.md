@@ -11,6 +11,15 @@ Paxos with in-line safety and liveness.
 
 # Meas retinentibus Lucifero cuspidis
 
+> **TIP** This is a test tip
+
+hi hi hi
+
+> **WARNING** THIs is a test warning
+
+
+> **ALERT* and now this is a test alert!and now this is a test alert!and now this is a test alert!and now this is a test alert!and now this is a test alert!and now this is a test alert!
+
 ## Mihi populi quas pallet de nutricis multi
 
 Lorem markdownum regia conspicui crocique celebri **pudore**, petendo **tacti
