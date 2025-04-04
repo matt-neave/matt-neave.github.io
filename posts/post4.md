@@ -11,7 +11,7 @@ Paxos with in-line safety and liveness.
 
 # Meas retinentibus Lucifero cuspidis
 
-> **TIP:** This is a tip message.
+> **TIP** This is a tip message.
 
 
 > **WARNING** THIs is a test warning
