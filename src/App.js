@@ -5,6 +5,7 @@ import { HashRouter as Router, Route, Routes, useNavigate } from 'react-router-d
 import './App.css';
 import BlogFeed from './blog/BlogFeed';
 import BlogPost from './blog/BlogPost';
+import BackToTopButton from './BackToTopButton';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
   			© {new Date().getFullYear()} Matt Neave. All rights reserved. <img src="favicon.ico" style={{ height: "3em", verticalAlign: "middle" }} />
 		</footer>
 
+		<BackToTopButton />
       </div>
     </Router>
   );

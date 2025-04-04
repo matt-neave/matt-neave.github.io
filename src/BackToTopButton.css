@@ -1,0 +1,31 @@
+.back-to-top-btn {
+	position: fixed;
+	bottom: 20px;
+	right: 40px;
+	padding: 12px 16px; /* Adjusted for more balanced size */
+	border: rgba(50, 50, 50, 0.4);
+	background-color: rgba(50, 50, 50, 0.4); /* Darker gray with more transparency */
+	color: white; /* White arrow for contrast */
+	border-radius: 5px; /* Squared edges */
+	cursor: pointer;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+	z-index: 1000;
+	font-size: 1.5rem; /* Bigger arrow */
+	font-weight: bold; /* Bold arrow */
+	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .back-to-top-btn:hover {
+	background-color: rgba(50, 50, 50, 0.4); /* Keep the same background on hover */
+	background: rgba(50, 50, 50, 0.4);
+	color: white; /* White arrow for contrast */
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Keep the same shadow */
+	border: rgba(50, 50, 50, 0.4);
+}
+  
+  .back-to-top-btn:active {
+	background-color: rgba(50, 50, 50, 0.4); /* Keep the same background when clicked */
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow on click */
+	transform: scale(0.98); /* Slightly shrink to give the feeling of a "click" */
+  }
+  
