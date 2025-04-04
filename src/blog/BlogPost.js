@@ -72,7 +72,7 @@ const BlogPost = () => {
       const codeString = String(children).replace(/\n$/, "");
 
       return !inline && match ? (
-        <div style={styles.wrapper}>
+        <div className="wrapper">
           <div style={{ position: "relative" }}>
             <CopyButton text={codeString} />
             <SyntaxHighlighter style={ghcolorsMod} language={match[1].toLowerCase()} PreTag="div" {...props}>
@@ -99,12 +99,11 @@ const BlogPost = () => {
       />
     ),
 	blockquote: ({ children }) => {
-		const childText = children?.[0]?.props?.children?.[0] || "";
-	  
+		const childText = children?.[1]?.props?.children?.[0]?.props?.children || "";
 		let className = "tip-box";
 		if (typeof childText === "string") {
-		  if (childText.startsWith("WARNING:")) className = "warning-box";
-		  else if (childText.startsWith("ALERT:")) className = "alert-box";
+		  if (childText.includes("WARNING")) className = "warning-box";
+		  else if (childText.includes("ALERT")) className = "alert-box";
 		}
 	  
 		return <div className={className}>{children}</div>;
@@ -133,28 +132,6 @@ const BlogPost = () => {
       </ReactMarkdown>
     </div>
   );
-};
-
-const styles = {
-  wrapper: {
-    borderRadius: "10px",
-    overflow: "hidden",
-    border: "1px solid #ddd",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.08)",
-	background: "#f9fbfc"
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    padding: "6px 12px",
-    background: "#f9fbfc"
-  },
-  circle: {
-    width: "12px",
-    height: "12px",
-    borderRadius: "50%",
-    marginRight: "6px",
-  },
 };
 
 export default BlogPost;

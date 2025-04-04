@@ -19,7 +19,7 @@ function App() {
             <a href="https://www.linkedin.com/in/matt-neave/" target="_blank" rel="noopener noreferrer" className="social-link">
               <i className="fab fa-linkedin"></i>
             </a>
-            <a href="https://twitter.com/mattneave" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href="" target="_blank" rel="noopener noreferrer" className="social-link">
               <i className="fab fa-twitter"></i>
             </a>
           </div>
