@@ -22,7 +22,7 @@
     margin-bottom: 20px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #a8d0e6, #f6c9d7, #f8e6a1, #66c7ff, #c0c9e4); /* Multi-color pastel gradient */
+    background: linear-gradient(135deg, #5b9bb5, #c4889a, #c9a84e, #4a90b8, #8a8fad); /* Deeper pastel gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 400% 400%; /* Creates the smooth fade effect */
@@ -76,7 +76,7 @@ body {
   
   .social-link {
 	font-size: 1.3rem; /* Slightly larger font size for icons */
-	color: #a8d0e6; /* Pastel blue for social icons */
+	color: #5b9bb5; /* Deeper pastel blue for social icons */
 	text-decoration: none;
 	transition: color 0.3s ease;
   }
@@ -110,7 +110,7 @@ body {
 	margin-bottom: 20px;
 	letter-spacing: 2px;
 	text-transform: uppercase;
-	background: linear-gradient(135deg, #a8d0e6, #f6c9d7, #f8e6a1, #a2d5f2, #c0c9e4); /* Multi-color pastel gradient */
+	background: linear-gradient(135deg, #5b9bb5, #c4889a, #c9a84e, #4a90b8, #8a8fad); /* Deeper pastel gradient */
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-size: 400% 400%; /* Creates the smooth fade effect */
@@ -150,12 +150,12 @@ body {
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Button styles with pastel blue */
+/* Button styles */
 button {
     padding: 12px 24px;
-    border: 2px solid #a8d0e6; /* Pastel blue border */
+    border: 2px solid #7bb8d4;
     background-color: #ffffff;
-    color: #a8d0e6; /* Pastel blue color for buttons */
+    color: #3d7fa8;
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
@@ -166,7 +166,7 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(135deg, #a8d0e6, #b3cde0); /* Pastel blue gradient */
+    background: linear-gradient(135deg, #4a90b8, #3d7fa8);
     color: #ffffff;
     border: 2px solid transparent;
 }
@@ -193,12 +193,12 @@ button:hover {
 
 /* For the title inside the post-summary */
 .post-summary h3 {
-    color: #a8d0e6; /* Pastel blue for titles */
+    color: #3d7fa8; /* Readable blue */
     transition: color 0.3s ease;
 }
 
 .post-summary:hover h3 {
-    color: #54b7f0; /* Slightly darker blue for a highlighted effect */
+    color: #2a6b94; /* Darker blue on hover */
 }
 
 /* Text inside the post-summary */
@@ -234,17 +234,17 @@ button:hover {
 }
 
 .post h1, .post h2, .post h3 {
-    color: #a8d0e6;
+    color: #3d7fa8;
 }
 
 /* Links */
 .post a {
-    color: #a8d0e6; /* Pastel blue links */
+    color: #3078a0; /* Readable blue links */
     transition: color 0.3s ease;
 }
 
 .post a:hover {
-    color: #b3cde0; /* Slightly darker pastel blue for hover effect */
+    color: #1e5f82; /* Darker blue on hover */
 }
 
 .post ul {
@@ -270,8 +270,8 @@ button:hover {
 .page-button {
     padding: 8px 16px;
     background-color: #ffffff;
-    color: #a8d0e6;
-    border: 2px solid #a8d0e6;
+    color: #3d7fa8;
+    border: 2px solid #7bb8d4;
     border-radius: 12px;
     cursor: pointer;
     font-family: 'Quicksand', sans-serif;
@@ -280,7 +280,7 @@ button:hover {
 }
 
 .page-button:hover {
-    background-color: #f9f9f9;
+    background: linear-gradient(135deg, #4a90b8, #3d7fa8);
     color: #ffffff;
     border-color: transparent;
 }
@@ -291,7 +291,7 @@ button:hover {
 }
 
 .page-button.active {
-    background-color: #a8d0e6;
+    background-color: #3d7fa8;
     color: #ffffff;
 }
 
@@ -312,8 +312,8 @@ button:hover {
 #tag-filter {
     padding: 8px;
     background-color: #ffffff;
-    color: #a8d0e6;
-    border: 2px solid #a8d0e6;
+    color: #3d7fa8;
+    border: 2px solid #7bb8d4;
     border-radius: 8px;
     cursor: pointer;
     font-family: 'Quicksand', sans-serif;
@@ -321,7 +321,7 @@ button:hover {
 }
 
 #tag-filter:hover {
-    border-color: #b3cde0;
+    border-color: #4a90b8;
 }
 
 /* Back button */
@@ -329,9 +329,9 @@ button:hover {
     margin-bottom: 20px;
 	margin-top: 10px;
     padding: 12px 24px;
-    border: 2px solid #a8d0e6;
+    border: 2px solid #7bb8d4;
     background-color: #ffffff;
-    color: #a8d0e6;
+    color: #3d7fa8;
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
@@ -341,7 +341,7 @@ button:hover {
 }
 
 .back-button:hover {
-    background-color: #f9f9f9;
+    background: linear-gradient(135deg, #4a90b8, #3d7fa8);
     color: #ffffff;
     border-color: transparent;
 }

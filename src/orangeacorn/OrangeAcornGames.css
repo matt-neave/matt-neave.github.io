@@ -1,31 +1,39 @@
 /* ==============================
-   Orange Acorn Games — Standalone Page
+   Orange Acorn Games — Immersive Scroll-Snap
    Warm earthy palette: orange, brown, warm greens
    ============================== */
 
-/* ---------- Page reset ---------- */
+/* ---------- Page (scroll-snap container) ---------- */
 .oag-page {
   font-family: 'Quicksand', sans-serif;
-  background-color: #faf6f1;
+  background-color: #1a1210;
   color: #3b2f2f;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
 }
 
-/* ---------- Header ---------- */
+/* Each snap section fills the viewport */
+.oag-snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+}
+
+/* ---------- Intro (header + hero + about + divider in one viewport) ---------- */
+.oag-intro {
+  display: flex;
+  flex-direction: column;
+  background-color: #faf6f1;
+  background: radial-gradient(ellipse at 50% 40%, rgba(212, 136, 74, 0.08) 0%, transparent 70%), #faf6f1;
+}
+
+/* Header — sits at the top of the intro, not fixed */
 .oag-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-  background-color: #fff8f0;
-  box-shadow: 0 2px 6px rgba(80, 50, 20, 0.08);
-  height: 60px;
   display: flex;
   align-items: center;
-  padding: 0 30px;
+  padding: 16px 30px;
+  flex-shrink: 0;
 }
 
 .oag-header-inner {
@@ -48,24 +56,29 @@
   letter-spacing: 0.5px;
 }
 
-/* ---------- Hero ---------- */
-.oag-hero {
-  padding-top: 120px;
-  padding-bottom: 40px;
+/* Intro body — fills remaining space, centers content */
+.oag-intro-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  padding: 0 24px;
 }
 
+/* Hero title */
 .oag-hero-title {
-  font-size: clamp(2.2rem, 7vw, 4rem);
+  font-size: clamp(2rem, 7vw, 4rem);
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   background: linear-gradient(135deg, #d4884a, #a8753a, #7a9a4e, #d4884a);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: oag-gradient-shift 8s ease infinite;
-  margin: 0 0 16px;
+  margin: 0 0 12px;
 }
 
 @keyframes oag-gradient-shift {
@@ -75,21 +88,26 @@
 }
 
 .oag-hero-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: #7a6655;
   font-weight: 300;
   letter-spacing: 0.5px;
-  max-width: 600px;
+  max-width: 560px;
   margin: 0 auto;
 }
 
-/* ---------- Section titles ---------- */
+/* About — compact, sits below subtitle */
+.oag-about {
+  max-width: 620px;
+  margin-top: 32px;
+  text-align: center;
+}
+
 .oag-section-title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #5a3e28;
-  margin-bottom: 20px;
-  position: relative;
+  margin: 0 0 12px;
   display: inline-block;
 }
 
@@ -100,103 +118,202 @@
   height: 3px;
   background: linear-gradient(90deg, #d4884a, #7a9a4e);
   border-radius: 2px;
-  margin-top: 6px;
-}
-
-/* ---------- About ---------- */
-.oag-about {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 24px 60px;
+  margin: 6px auto 0;
 }
 
 .oag-about-text {
-  font-size: 1.15rem;
-  line-height: 1.8;
+  font-size: 1.05rem;
+  line-height: 1.7;
   color: #5c4a3a;
   font-weight: 300;
+  margin: 0;
 }
 
-/* ---------- Projects ---------- */
-.oag-projects {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 24px 80px;
+/* Contact button */
+.oag-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 12px 32px;
+  border: 2px solid #d4884a;
+  border-radius: 28px;
+  background: transparent;
+  color: #d4884a;
+  text-decoration: none;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: none;
+  margin-bottom: 0;
 }
 
-.oag-projects-list {
+.oag-contact-btn:hover {
+  background: linear-gradient(135deg, #d4884a, #c27a3f);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.oag-contact-hover,
+.oag-contact-copied { display: none; }
+
+.oag-contact-btn:hover .oag-contact-label { display: none; }
+.oag-contact-btn:hover .oag-contact-hover { display: inline; }
+
+.oag-contact-btn.oag-copied .oag-contact-label,
+.oag-contact-btn.oag-copied .oag-contact-hover { display: none; }
+.oag-contact-btn.oag-copied .oag-contact-copied { display: inline; }
+
+.oag-contact-btn.oag-copied {
+  background: #5a8a4a;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* Divider — pinned to bottom of intro */
+.oag-divider {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  margin-top: 12px;
+  align-items: center;
+  padding: 24px 24px 32px;
+  flex-shrink: 0;
 }
 
-/* ---------- Project card ---------- */
-.oag-project-card {
-  background: #ffffff;
-  border-radius: 14px;
+.oag-divider-text {
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #a08060;
+}
+
+.oag-divider-arrow {
+  margin-top: 8px;
+  font-size: 1.4rem;
+  color: #a08060;
+  animation: oag-bounce 2s ease infinite;
+}
+
+@keyframes oag-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ---------- Reveal animation ---------- */
+.oag-project-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.oag-project-section.oag-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.oag-project-section.oag-visible .oag-project-title {
+  animation: oag-fade-up 0.7s 0.2s ease both;
+}
+
+.oag-project-section.oag-visible .oag-project-description {
+  animation: oag-fade-up 0.7s 0.35s ease both;
+}
+
+.oag-project-section.oag-visible .oag-project-links {
+  animation: oag-fade-up 0.7s 0.5s ease both;
+}
+
+@keyframes oag-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Project section (full-viewport) ---------- */
+.oag-project-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1210;
+  padding: 40px 24px;
+  box-sizing: border-box;
+}
+
+/* Media wrapper — constrains image/trailer to a sensible size */
+.oag-project-media-wrap {
+  max-width: 700px;
+  width: 100%;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(80, 50, 20, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.oag-project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(80, 50, 20, 0.16);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  aspect-ratio: 16 / 9;
+  background-color: #000;
 }
 
 .oag-project-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   object-fit: cover;
-  max-height: 420px;
 }
 
-.oag-project-info {
-  padding: 28px 32px 32px;
+.oag-project-trailer {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.oag-project-content {
+  max-width: 700px;
+  width: 100%;
+  padding-top: 28px;
+  text-align: center;
 }
 
 .oag-project-title {
-  font-size: 1.6rem;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
   font-weight: bold;
-  color: #5a3e28;
+  color: #ffffff;
   margin: 0 0 12px;
 }
 
 .oag-project-description {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: #6b5a4a;
-  margin: 0 0 20px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 24px;
   font-weight: 300;
 }
 
-/* ---------- Project links (Steam / Itch) ---------- */
+/* ---------- Project links ---------- */
 .oag-project-links {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .oag-project-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 22px;
-  border: 2px solid #d4884a;
+  padding: 10px 24px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
   border-radius: 24px;
-  color: #d4884a;
+  color: #ffffff;
   text-decoration: none;
   font-weight: bold;
   font-size: 0.95rem;
   transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .oag-project-link:hover {
-  background: linear-gradient(135deg, #d4884a, #c27a3f);
-  color: #ffffff;
-  border-color: transparent;
+  background: rgba(255, 255, 255, 0.22);
+  border-color: #ffffff;
 }
 
 .oag-project-link i {
@@ -208,19 +325,28 @@
   text-align: center;
   padding: 24px 16px;
   font-size: 0.85rem;
-  color: #a0907e;
-  border-top: 1px solid #e8ddd0;
-  margin-top: auto;
+  color: #6b5f53;
+  border-top: 1px solid #2e2420;
+  background-color: #1a1210;
 }
+
 
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
-  .oag-project-info {
-    padding: 20px 18px 24px;
+  .oag-hero-title {
+    letter-spacing: 2px;
   }
 
-  .oag-project-title {
-    font-size: 1.3rem;
+  .oag-about {
+    margin-top: 24px;
+  }
+
+  .oag-about-text {
+    font-size: 0.95rem;
+  }
+
+  .oag-project-content {
+    padding: 0 20px 40px;
   }
 
   .oag-project-links {
@@ -229,9 +355,5 @@
 
   .oag-project-link {
     justify-content: center;
-  }
-
-  .oag-about {
-    padding: 30px 16px 40px;
   }
 }
