@@ -3,12 +3,20 @@
    Warm earthy palette: orange, brown, warm greens
    ============================== */
 
-/* ---------- Page (scroll-snap container) ---------- */
+/* ---------- Page ---------- */
 .oag-page {
   font-family: 'Quicksand', sans-serif;
   background-color: #1a1210;
   color: #3b2f2f;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---------- Scroll-snap container ---------- */
+.oag-scroll-container {
+  flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
   scroll-snap-type: y mandatory;
@@ -26,14 +34,27 @@
   flex-direction: column;
   background-color: #faf6f1;
   background: radial-gradient(ellipse at 50% 40%, rgba(212, 136, 74, 0.08) 0%, transparent 70%), #faf6f1;
+  min-height: 100%;
+  max-height: 100%;
 }
 
-/* Header — sits at the top of the intro, not fixed */
+/* Header — fixed above scroll container */
 .oag-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 16px 30px;
   flex-shrink: 0;
+  background-color: #faf6f1;
+  box-shadow: 0 1px 0 rgba(80, 50, 20, 0.08);
+  z-index: 20;
+}
+
+/* Header contact — smaller variant */
+.oag-contact-btn.oag-header-contact {
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .oag-header-inner {
@@ -69,16 +90,16 @@
 
 /* Hero title */
 .oag-hero-title {
-  font-size: clamp(2rem, 7vw, 4rem);
+  font-size: clamp(1.8rem, 6vw, 3rem);
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   background: linear-gradient(135deg, #d4884a, #a8753a, #7a9a4e, #d4884a);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: oag-gradient-shift 8s ease infinite;
-  margin: 0 0 12px;
+  margin: 0 0 8px;
 }
 
 @keyframes oag-gradient-shift {
@@ -99,7 +120,7 @@
 /* About — compact, sits below subtitle */
 .oag-about {
   max-width: 620px;
-  margin-top: 32px;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -134,7 +155,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-top: 28px;
+  margin-top: 16px;
   padding: 12px 32px;
   border: 2px solid #d4884a;
   border-radius: 28px;
@@ -177,7 +198,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 24px 32px;
+  padding: 0 24px 32px;
   flex-shrink: 0;
 }
 

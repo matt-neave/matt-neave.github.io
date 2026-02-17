@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './OrangeAcornGames.css';
 
 const projects = [
@@ -22,6 +22,30 @@ const projects = [
     ],
   },
 ];
+
+function ContactButton({ className, label = 'Contact Us' }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleClick = useCallback(() => {
+    const addr = 'test' + '@' + 'gmail.com';
+    navigator.clipboard.writeText(addr).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }, []);
+
+  return (
+    <button
+      className={`oag-contact-btn ${copied ? 'oag-copied' : ''} ${className || ''}`}
+      onClick={handleClick}
+    >
+      <i className="fas fa-envelope"></i>
+      <span className="oag-contact-label">{label}</span>
+      <span className="oag-contact-hover">Copy Email</span>
+      <span className="oag-contact-copied">Copied!</span>
+    </button>
+  );
+}
 
 function useReveal() {
   const ref = useRef(null);
@@ -121,18 +145,20 @@ function ProjectSection({ project }) {
 function OrangeAcornGames() {
   return (
     <div className="oag-page">
-      <section className="oag-snap-section oag-intro">
-        <header className="oag-header">
-          <div className="oag-header-inner">
-            <img
-              src="images/orange_acorn_logo.png"
-              alt="Orange Acorn Games"
-              className="oag-logo"
-            />
-            <span className="oag-header-title">Orange Acorn Games</span>
-          </div>
-        </header>
+      <header className="oag-header">
+        <div className="oag-header-inner">
+          <img
+            src="images/orange_acorn_logo.png"
+            alt="Orange Acorn Games"
+            className="oag-logo"
+          />
+          <span className="oag-header-title">Orange Acorn Games</span>
+        </div>
+        <ContactButton className="oag-header-contact" />
+      </header>
 
+      <div className="oag-scroll-container">
+      <section className="oag-snap-section oag-intro">
         <div className="oag-intro-body">
           <h1 className="oag-hero-title">Orange Acorn Games</h1>
           <p className="oag-hero-subtitle">
@@ -149,22 +175,7 @@ function OrangeAcornGames() {
             </p>
           </div>
 
-          <button
-            className="oag-contact-btn"
-            onClick={(e) => {
-              const btn = e.currentTarget;
-              const addr = 'test' + '@' + 'gmail.com';
-              navigator.clipboard.writeText(addr).then(() => {
-                btn.classList.add('oag-copied');
-                setTimeout(() => btn.classList.remove('oag-copied'), 2000);
-              });
-            }}
-          >
-            <i className="fas fa-envelope"></i>
-            <span className="oag-contact-label">Contact Us</span>
-            <span className="oag-contact-hover">Copy Email</span>
-            <span className="oag-contact-copied">Copied!</span>
-          </button>
+          <ContactButton />
         </div>
 
         <div className="oag-divider">
@@ -183,6 +194,7 @@ function OrangeAcornGames() {
           reserved.
         </p>
       </footer>
+      </div>
     </div>
   );
 }
