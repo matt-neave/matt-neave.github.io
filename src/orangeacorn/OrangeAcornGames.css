@@ -1,0 +1,237 @@
+/* ==============================
+   Orange Acorn Games — Standalone Page
+   Warm earthy palette: orange, brown, warm greens
+   ============================== */
+
+/* ---------- Page reset ---------- */
+.oag-page {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #faf6f1;
+  color: #3b2f2f;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Header ---------- */
+.oag-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background-color: #fff8f0;
+  box-shadow: 0 2px 6px rgba(80, 50, 20, 0.08);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.oag-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.oag-logo {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.oag-header-title {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #5a3e28;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Hero ---------- */
+.oag-hero {
+  padding-top: 120px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.oag-hero-title {
+  font-size: clamp(2.2rem, 7vw, 4rem);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, #d4884a, #a8753a, #7a9a4e, #d4884a);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: oag-gradient-shift 8s ease infinite;
+  margin: 0 0 16px;
+}
+
+@keyframes oag-gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.oag-hero-subtitle {
+  font-size: 1.25rem;
+  color: #7a6655;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ---------- Section titles ---------- */
+.oag-section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #5a3e28;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.oag-section-title::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, #d4884a, #7a9a4e);
+  border-radius: 2px;
+  margin-top: 6px;
+}
+
+/* ---------- About ---------- */
+.oag-about {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+.oag-about-text {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #5c4a3a;
+  font-weight: 300;
+}
+
+/* ---------- Projects ---------- */
+.oag-projects {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+.oag-projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  margin-top: 12px;
+}
+
+/* ---------- Project card ---------- */
+.oag-project-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(80, 50, 20, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.oag-project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(80, 50, 20, 0.16);
+}
+
+.oag-project-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  max-height: 420px;
+}
+
+.oag-project-info {
+  padding: 28px 32px 32px;
+}
+
+.oag-project-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #5a3e28;
+  margin: 0 0 12px;
+}
+
+.oag-project-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #6b5a4a;
+  margin: 0 0 20px;
+  font-weight: 300;
+}
+
+/* ---------- Project links (Steam / Itch) ---------- */
+.oag-project-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.oag-project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border: 2px solid #d4884a;
+  border-radius: 24px;
+  color: #d4884a;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.oag-project-link:hover {
+  background: linear-gradient(135deg, #d4884a, #c27a3f);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.oag-project-link i {
+  font-size: 1.1rem;
+}
+
+/* ---------- Footer ---------- */
+.oag-footer {
+  text-align: center;
+  padding: 24px 16px;
+  font-size: 0.85rem;
+  color: #a0907e;
+  border-top: 1px solid #e8ddd0;
+  margin-top: auto;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .oag-project-info {
+    padding: 20px 18px 24px;
+  }
+
+  .oag-project-title {
+    font-size: 1.3rem;
+  }
+
+  .oag-project-links {
+    flex-direction: column;
+  }
+
+  .oag-project-link {
+    justify-content: center;
+  }
+
+  .oag-about {
+    padding: 30px 16px 40px;
+  }
+}
