@@ -1,0 +1,284 @@
+/* ==============================
+   Orange Acorn blog — styled after GUNBOAT-8's in-game roadmap:
+   flat dark slate, white pixel headings with a hard shadow,
+   white Pixellari body, blue-grey for everything secondary.
+   Both faces sit on a 16-per-em grid, so sizes stay at multiples
+   of 16px to keep every pixel crisp.
+   ============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
+@font-face {
+  font-family: 'BoldPixels';
+  src: url('../fonts/BoldsPixels.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pixellari';
+  src: url('../fonts/Pixellari.ttf') format('truetype');
+  font-display: swap;
+}
+
+.oagb-page {
+  --oagb-bg: #212329;
+  --oagb-title: #f4f4f4;
+  --oagb-body: #f4f4f4;
+  --oagb-dim: #94b0c2;
+  --oagb-line: #343843;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--oagb-bg);
+  color: var(--oagb-body);
+  font-family: 'Pixellari', monospace;
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+
+  /* --oagb-dpr is set from JS (window.devicePixelRatio). One screen pixel: */
+  --oagb-dp: calc(1px / var(--oagb-dpr, 1));
+  /* The reading column's left edge, snapped to a whole screen pixel so pixel
+     text never straddles two (a half-pixel edge renders as blur). */
+  --oagb-left: max(0px, round(down, calc((100% - 672px) / 2), var(--oagb-dp)));
+}
+
+/* Fills the page height so the footer sits at the bottom of short pages */
+.oagb-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Everything shares the reading column's left edge */
+.oagb-column,
+.oagb-measure {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 672px; /* 640px of text plus the side gutters */
+  margin-left: var(--oagb-left);
+  margin-right: auto;
+  padding: 32px 16px 0;
+}
+
+.oagb-page a { color: inherit; }
+
+/* ---------- Nav ---------- */
+.oagb-nav { margin-bottom: 64px; }
+
+.oagb-page .oagb-back {
+  color: var(--oagb-dim);
+  text-decoration: none;
+}
+
+.oagb-page .oagb-back:hover { color: var(--oagb-title); }
+
+/* ---------- Headings ---------- */
+.oagb-heading,
+.oagb-post-title,
+.oagb-entry-title,
+.oagb-prose h1,
+.oagb-prose h2,
+.oagb-prose h3 {
+  font-family: 'BoldPixels', monospace;
+  font-weight: normal;
+  color: var(--oagb-title);
+  /* Each heading sets --oagb-size; the real size is snapped so one font pixel
+     (size / 16) is a whole number of screen pixels at any display scaling. */
+  --oagb-size: 32px;
+  font-size: calc(round(nearest, calc(var(--oagb-size) * var(--oagb-dpr, 1)), 16px) / var(--oagb-dpr, 1));
+  text-shadow: 0.0625em 0.0625em 0 #000; /* one font pixel deep */
+  line-height: 1.25;
+  /* Own layer = greyscale smoothing, no ClearType colour fringes */
+  transform: translateZ(0);
+}
+
+.oagb-heading {
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 64px;
+}
+
+.oagb-status { text-align: center; }
+
+/* ---------- Post list ---------- */
+.oagb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.oagb-list li + li { margin-top: 48px; }
+
+.oagb-page .oagb-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.oagb-entry-title { transition: color 0.15s steps(1); }
+
+.oagb-page .oagb-entry:hover .oagb-entry-title { color: var(--oagb-dim); }
+
+.oagb-date { color: var(--oagb-dim); }
+
+/* ---------- Post ---------- */
+.oagb-nav.oagb-measure { margin-bottom: 0; }
+
+.oagb-hero {
+  padding-top: 96px;
+  padding-bottom: 24px; /* plus the column's 32px top padding */
+}
+
+.oagb-hero .oagb-date { margin: 0; }
+
+/* Starts on the body's left edge but may run wider than the reading column,
+   up to the right-hand gutter of the window. */
+.oagb-post-title {
+  --oagb-size: 48px;
+  /* 12 font pixels: BoldPixels caps are only 8 of the 16, so anything looser
+     leaves a half-letter gap between lines. Whole font pixels keep the grid. */
+  line-height: 0.75;
+  width: max-content;
+  max-width: min(14ch, calc(100vw - max(16px, (100vw - 640px) / 2) - 48px));
+  overflow-wrap: break-word; /* a long word wraps rather than overflowing a phone */
+  margin: 0 0 12px;
+}
+
+@media (min-width: 640px) {
+  .oagb-post-title { --oagb-size: 64px; }
+}
+
+@media (max-width: 639px) {
+  .oagb-hero { padding-top: 64px; padding-bottom: 8px; }
+}
+
+@media (min-width: 1280px) {
+  .oagb-post-title { --oagb-size: 96px; }
+}
+
+.oagb-list,
+.oagb-column article { margin-bottom: 128px; }
+
+/* ---------- Prose (rendered markdown) ---------- */
+/* Pixel fonts tire the eye over whole paragraphs, so reading text uses the
+   studio page's face; the pixel fonts stay on headings and labels. */
+.oagb-prose,
+.oagb-entry-excerpt {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #e3e6ea;
+  -webkit-font-smoothing: auto;
+  font-smooth: auto;
+}
+
+.oagb-prose > :first-child { margin-top: 0; }
+
+.oagb-prose p { margin: 0 0 24px; }
+
+.oagb-prose h1,
+.oagb-prose h2 { margin: 64px 0 16px; }
+
+/* BoldPixels is too small to read at 16px, so sub-headings use the body face */
+.oagb-prose h3 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-shadow: none;
+  transform: none;
+  margin: 48px 0 8px;
+}
+
+.oagb-prose strong { font-weight: 700; color: var(--oagb-title); }
+
+.oagb-prose a {
+  color: var(--oagb-dim);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.oagb-prose a:hover { color: var(--oagb-title); }
+
+/* Lists get the roadmap's diamond stations as bullets */
+.oagb-prose ul {
+  list-style: none;
+  padding-left: 32px;
+  margin: 0 0 24px;
+}
+
+.oagb-prose ul li { position: relative; }
+
+.oagb-prose ul li::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 0.65em;
+  width: 8px;
+  height: 8px;
+  background: var(--oagb-dim);
+  transform: rotate(45deg);
+}
+
+.oagb-prose ol {
+  padding-left: 32px;
+  margin: 0 0 24px;
+}
+
+.oagb-prose ol li::marker { color: var(--oagb-dim); }
+
+.oagb-prose blockquote {
+  margin: 0 0 24px;
+  padding: 0 0 0 16px;
+  border-left: 4px solid var(--oagb-dim);
+  color: var(--oagb-dim);
+}
+
+.oagb-prose blockquote p:last-child { margin-bottom: 0; }
+
+/* The roadmap's dashed course */
+.oagb-prose hr {
+  border: 0;
+  border-top: 4px dashed var(--oagb-dim);
+  margin: 64px 0;
+}
+
+.oagb-prose img,
+.oagb-prose video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 32px 0;
+}
+
+.oagb-prose code {
+  font-family: 'Pixellari', monospace;
+  color: var(--oagb-title);
+  background: var(--oagb-line);
+  padding: 0 4px;
+}
+
+.oagb-prose pre {
+  background: #1a1c22;
+  padding: 16px;
+  overflow-x: auto;
+  margin: 0 0 24px;
+}
+
+.oagb-prose pre code { background: none; padding: 0; }
+
+/* ---------- Footer ---------- */
+/* Pushed to the bottom of the screen; keeps its gap below long posts */
+.oagb-footer {
+  margin-top: auto;
+  padding: 32px 0;
+  border-top: 1px solid var(--oagb-line);
+  color: #5c6773;
+  text-align: center;
+}
+
+.oagb-footer p { margin: 0; }

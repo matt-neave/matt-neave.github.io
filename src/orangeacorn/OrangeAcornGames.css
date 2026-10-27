@@ -1,83 +1,66 @@
 /* ==============================
-   Orange Acorn Games — Immersive Scroll-Snap
-   Warm earthy palette: orange, brown, warm greens
+   Orange Acorn Games
+   Warm dark studio intro, then each game is its own "world":
+   a pinned stage where the trailer grows to fill the screen and
+   the game's own look takes over (see the oag-world--* themes).
    ============================== */
 
-/* ---------- Page ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&family=Archivo:wght@200;800&display=swap');
+
+@font-face {
+  font-family: 'Monogram';
+  src: url('./fonts/monogram.ttf') format('truetype');
+  font-display: swap;
+}
+
 .oag-page {
+  --oag-bg: #17110e;
+  --oag-text: #f6ede4;
+  --oag-muted: #b3a291;
+  --oag-accent: #ff7a1a;
+
+  background: var(--oag-bg);
+  color: var(--oag-text);
   font-family: 'Quicksand', sans-serif;
-  background-color: #1a1210;
-  color: #3b2f2f;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
 }
 
-/* ---------- Scroll-snap container ---------- */
-.oag-scroll-container {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scroll-snap-type: y mandatory;
-}
-
-/* Each snap section fills the viewport */
-.oag-snap-section {
-  scroll-snap-align: start;
-  min-height: 100vh;
-}
-
-/* ---------- Intro (header + hero + about + divider in one viewport) ---------- */
+/* ---------- Intro ---------- */
 .oag-intro {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #faf6f1;
-  background: radial-gradient(ellipse at 50% 40%, rgba(212, 136, 74, 0.08) 0%, transparent 70%), #faf6f1;
-  min-height: 100%;
-  max-height: 100%;
+  background: radial-gradient(ellipse at 50% 45%, rgba(255, 122, 26, 0.12) 0%, transparent 60%), var(--oag-bg);
 }
 
-/* Header — fixed above scroll container */
 .oag-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 30px;
-  flex-shrink: 0;
-  background-color: #faf6f1;
-  box-shadow: 0 1px 0 rgba(80, 50, 20, 0.08);
-  z-index: 20;
+  padding: 16px clamp(16px, 4vw, 32px);
 }
 
-/* Header contact — smaller variant */
-.oag-contact-btn.oag-header-contact {
-  padding: 8px 20px;
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.oag-header-inner {
+.oag-header-nav {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
 }
 
-.oag-logo {
-  height: 42px;
-  width: 42px;
-  border-radius: 50%;
-  object-fit: cover;
+.oag-page .oag-header-link {
+  color: var(--oag-muted);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
+
+.oag-page .oag-header-link:hover { color: var(--oag-accent); }
 
 .oag-header-title {
-  font-weight: bold;
-  font-size: 1.4rem;
-  color: #5a3e28;
+  font-weight: 700;
+  font-size: 1.15rem;
   letter-spacing: 0.5px;
+  color: var(--oag-muted);
 }
 
-/* Intro body — fills remaining space, centers content */
 .oag-intro-body {
   flex: 1;
   display: flex;
@@ -85,18 +68,31 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 24px;
+  padding: 0 16px;
 }
 
-/* Hero title */
+.oag-intro-logo {
+  width: clamp(96px, 16vw, 140px);
+  height: auto;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 10px 24px rgba(255, 122, 26, 0.3));
+}
+
+@keyframes oag-bob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-10px) rotate(3deg); }
+}
+
 .oag-hero-title {
-  font-size: clamp(1.8rem, 6vw, 3rem);
-  font-weight: bold;
+  font-size: clamp(2rem, 7vw, 3.6rem);
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3px;
-  background: linear-gradient(135deg, #d4884a, #a8753a, #7a9a4e, #d4884a);
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ff7a1a, #ffb35c, #d4884a, #ff7a1a);
   background-size: 300% 300%;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: oag-gradient-shift 8s ease infinite;
   margin: 0 0 8px;
@@ -109,72 +105,75 @@
 }
 
 .oag-hero-subtitle {
-  font-size: 1.15rem;
-  color: #7a6655;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  max-width: 560px;
-  margin: 0 auto;
-}
-
-/* About — compact, sits below subtitle */
-.oag-about {
-  max-width: 620px;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.oag-section-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #5a3e28;
-  margin: 0 0 12px;
-  display: inline-block;
-}
-
-.oag-section-title::after {
-  content: '';
-  display: block;
-  width: 60%;
-  height: 3px;
-  background: linear-gradient(90deg, #d4884a, #7a9a4e);
-  border-radius: 2px;
-  margin: 6px auto 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--oag-text);
+  margin: 0 0 20px;
 }
 
 .oag-about-text {
+  max-width: 600px;
   font-size: 1.05rem;
-  line-height: 1.7;
-  color: #5c4a3a;
-  font-weight: 300;
+  line-height: 1.75;
+  color: var(--oag-muted);
   margin: 0;
 }
 
-/* Contact button */
+.oag-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 32px;
+}
+
+.oag-divider-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--oag-muted);
+}
+
+.oag-divider-arrow {
+  margin-top: 8px;
+  font-size: 1.4rem;
+  color: var(--oag-accent);
+  animation: oag-bounce 2s ease infinite;
+}
+
+@keyframes oag-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(8px); }
+}
+
+/* ---------- Contact button ---------- */
 .oag-contact-btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-top: 16px;
+  margin: 0; /* override the site-wide button margin/shadow in App.css */
   padding: 12px 32px;
-  border: 2px solid #d4884a;
+  border: 2px solid var(--oag-accent);
   border-radius: 28px;
   background: transparent;
-  color: #d4884a;
-  text-decoration: none;
+  color: var(--oag-accent);
   font-family: 'Quicksand', sans-serif;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1.05rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
   box-shadow: none;
-  margin-bottom: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .oag-contact-btn:hover {
-  background: linear-gradient(135deg, #d4884a, #c27a3f);
-  color: #ffffff;
-  border-color: transparent;
+  background: var(--oag-accent);
+  color: var(--oag-bg);
+  border: 2px solid var(--oag-accent);
+}
+
+.oag-contact-btn.oag-header-contact {
+  padding: 7px 18px;
+  font-size: 0.9rem;
 }
 
 .oag-contact-hover,
@@ -186,195 +185,390 @@
 .oag-contact-btn.oag-copied .oag-contact-label,
 .oag-contact-btn.oag-copied .oag-contact-hover { display: none; }
 .oag-contact-btn.oag-copied .oag-contact-copied { display: inline; }
+.oag-contact-btn.oag-copied { background: #5a8a4a; border-color: #5a8a4a; color: #fff; }
 
-.oag-contact-btn.oag-copied {
-  background: #5a8a4a;
-  color: #ffffff;
-  border-color: transparent;
-}
-
-/* Divider — pinned to bottom of intro */
-.oag-divider {
+/* ---------- Stepper (fixed, right edge) ---------- */
+.oag-stepper {
+  position: fixed;
+  right: clamp(10px, 2vw, 28px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+/* Reset the site-wide button styles from App.css */
+.oag-step,
+.oag-step:hover {
+  display: flex;
   align-items: center;
-  padding: 0 24px 32px;
-  flex-shrink: 0;
+  gap: 12px;
+  margin: 0;
+  padding: 6px 4px;
+  border: none;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
 }
 
-.oag-divider-text {
-  font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #a08060;
-}
-
-.oag-divider-arrow {
-  margin-top: 8px;
-  font-size: 1.4rem;
-  color: #a08060;
-  animation: oag-bounce 2s ease infinite;
-}
-
-@keyframes oag-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
-}
-
-/* ---------- Reveal animation ---------- */
-.oag-project-section {
+.oag-step-label {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateX(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+  pointer-events: none;
 }
 
-.oag-project-section.oag-visible {
+.oag-step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.35);
+  transition: height 0.3s ease, background 0.3s ease;
+}
+
+.oag-step:hover .oag-step-dot { background: #fff; }
+
+.oag-step-active .oag-step-dot {
+  height: 28px;
+  background: var(--oag-accent);
+}
+
+.oag-step-active .oag-step-label,
+.oag-step:hover .oag-step-label,
+.oag-step:focus-visible .oag-step-label {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
-.oag-project-section.oag-visible .oag-project-title {
-  animation: oag-fade-up 0.7s 0.2s ease both;
+/* ---------- Game world: pinned stage ---------- */
+.oag-world {
+  --enter: 0;  /* 0 → 1: framed window grows to full-bleed */
+  --show: 0;   /* 0 → 1: game info appears */
+  --leave: 0;  /* 0 → 1: info fades as you scroll on */
+  position: relative;
+  height: 300vh;
 }
 
-.oag-project-section.oag-visible .oag-project-description {
-  animation: oag-fade-up 0.7s 0.35s ease both;
-}
-
-.oag-project-section.oag-visible .oag-project-links {
-  animation: oag-fade-up 0.7s 0.5s ease both;
-}
-
-@keyframes oag-fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ---------- Project section (full-viewport) ---------- */
-.oag-project-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #1a1210;
-  padding: 40px 24px;
-  box-sizing: border-box;
-}
-
-/* Media wrapper — constrains image/trailer to a sensible size */
-.oag-project-media-wrap {
-  max-width: 700px;
-  width: 100%;
-  border-radius: 12px;
+.oag-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
-  aspect-ratio: 16 / 9;
-  background-color: #000;
 }
 
-.oag-project-image {
+.oag-window {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  clip-path: inset(
+    calc((1 - var(--enter)) * 20%) calc((1 - var(--enter)) * 12%)
+    round calc((1 - var(--enter)) * 28px)
+  );
+}
+
+.oag-window-fallback,
+.oag-window-trailer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 0;
+  pointer-events: none;
+}
+
+.oag-window-fallback {
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
+  transform: translate(-50%, -50%);
 }
 
-.oag-project-trailer {
-  width: 100%;
-  height: 100%;
-  display: block;
+/* Cover the viewport at 16:9, zoomed slightly to crop YouTube's chrome */
+.oag-window-trailer {
+  width: max(100vw, 177.78vh);
+  height: max(100vh, 56.25vw);
+  transform: translate(-50%, -50%) scale(calc(1.25 - var(--enter) * 0.1));
 }
 
-.oag-project-content {
-  max-width: 700px;
-  width: 100%;
-  padding-top: 28px;
-  text-align: center;
+.oag-window-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: calc(var(--show) * (1 - var(--leave) * 0.5));
 }
 
-.oag-project-title {
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  font-weight: bold;
-  color: #ffffff;
-  margin: 0 0 12px;
+.oag-world-content {
+  position: absolute;
+  left: clamp(16px, 6vw, 80px);
+  right: clamp(16px, 6vw, 80px);
+  bottom: clamp(32px, 9vh, 96px);
+  max-width: 560px;
+  opacity: calc(var(--show) * (1 - var(--leave)));
+  transform: translateY(calc((1 - var(--show)) * 40px - var(--leave) * 40px));
 }
 
-.oag-project-description {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0 0 24px;
-  font-weight: 300;
-}
+.oag-world-title { margin: 0; }
+.oag-world-tagline,
+.oag-world-description { margin: 0; }
 
-/* ---------- Project links ---------- */
-.oag-project-links {
+.oag-world-tagline {
   display: flex;
-  gap: 14px;
   flex-wrap: wrap;
-  justify-content: center;
+  column-gap: 1.5em;
 }
 
-.oag-project-link {
+.oag-world-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.oag-world-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 24px;
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  border-radius: 24px;
-  color: #ffffff;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
-  background: rgba(255, 255, 255, 0.08);
 }
 
-.oag-project-link:hover {
-  background: rgba(255, 255, 255, 0.22);
-  border-color: #ffffff;
+/* ---------- World: GUNBOAT-8 — bright sea, chunky pixels ---------- */
+.oag-world--gunboat8 .oag-window { background: #42a5f5; }
+
+.oag-world--gunboat8 .oag-window-atmosphere {
+  background: linear-gradient(0deg, rgba(10, 40, 80, 0.75) 0%, rgba(10, 40, 80, 0) 60%);
 }
 
-.oag-project-link i {
-  font-size: 1.1rem;
+.oag-world--gunboat8 .oag-world-content {
+  font-family: 'Monogram', monospace;
+  color: #fff;
+}
+
+.oag-world--gunboat8 .oag-world-new {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 2px 12px 4px;
+  background: #ff5a4e;
+  border: 4px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  font-size: 1.8rem;
+  line-height: 1;
+  transform: rotate(-4deg);
+  animation: oag-blink 1.2s steps(2) infinite;
+}
+
+@keyframes oag-blink {
+  50% { transform: rotate(-4deg) scale(1.08); }
+}
+
+.oag-world--gunboat8 .oag-world-title img {
+  display: block;
+  width: min(100%, 520px);
+  height: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(6px 6px 0 rgba(0, 0, 0, 0.35));
+}
+
+.oag-world--gunboat8 .oag-world-tagline {
+  margin: 16px 0 12px;
+  font-size: 1.7rem;
+  line-height: 1;
+  color: #ffcc77;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.oag-world--gunboat8 .oag-world-description {
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  background: rgba(8, 28, 56, 0.85);
+  border: 4px solid #000;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5);
+  font-size: 1.55rem;
+  line-height: 1.05;
+}
+
+.oag-world--gunboat8 .oag-world-link {
+  padding: 8px 20px 10px;
+  background: #ffcc77;
+  color: #000;
+  border: 4px solid #000;
+  box-shadow: 5px 5px 0 #000;
+  font-size: 1.7rem;
+  line-height: 1;
+  transition: transform 0.08s steps(1), box-shadow 0.08s steps(1), background 0.08s steps(1);
+}
+
+.oag-world--gunboat8 .oag-world-link i { font-size: 1.2rem; }
+
+/* Hover lifts and brightens; only a real click presses the button down */
+.oag-world--gunboat8 .oag-world-link:hover,
+.oag-world--gunboat8 .oag-world-link:focus-visible {
+  background: #ffe0a3;
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 #000;
+  outline: none;
+}
+
+.oag-world--gunboat8 .oag-world-link-secondary { background: #fff; }
+.oag-world--gunboat8 .oag-world-link-secondary:hover,
+.oag-world--gunboat8 .oag-world-link-secondary:focus-visible { background: #fff; }
+
+.oag-world--gunboat8 .oag-world-link:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* ---------- World: Holding Pattern — quiet deep space ---------- */
+.oag-world--holding-pattern .oag-window { background: #2b2540; }
+
+.oag-world--holding-pattern .oag-window-atmosphere {
+  background:
+    radial-gradient(1px 1px at 12% 22%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 68% 14%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 35% 70%, #e9a3ff 50%, transparent 51%),
+    radial-gradient(1px 1px at 84% 58%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 52% 38%, #ff9a7a 50%, transparent 51%),
+    radial-gradient(1px 1px at 22% 88%, #fff 50%, transparent 51%),
+    linear-gradient(90deg, rgba(43, 37, 64, 0.94) 0%, rgba(43, 37, 64, 0.7) 40%, rgba(43, 37, 64, 0) 75%);
+  background-size: 320px 320px, 260px 260px, 400px 400px, 300px 300px, 360px 360px, 280px 280px, 100% 100%;
+  animation: oag-drift 60s linear infinite;
+}
+
+@keyframes oag-drift {
+  to {
+    background-position: 320px 320px, -260px 260px, 400px -400px, -300px -300px, 360px 0, 0 280px, 0 0;
+  }
+}
+
+.oag-world--holding-pattern .oag-world-content {
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Archivo', sans-serif;
+  color: #fff;
+}
+
+.oag-world--holding-pattern .oag-world-new { display: none; }
+
+.oag-world--holding-pattern .oag-world-title {
+  font-size: clamp(3.2rem, 9vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+}
+
+.oag-world--holding-pattern .oag-world-title span { display: block; }
+.oag-world--holding-pattern .oag-world-title span:first-child { font-weight: 200; }
+.oag-world--holding-pattern .oag-world-title span:last-child { font-weight: 800; }
+
+.oag-world--holding-pattern .oag-world-tagline {
+  margin: 20px 0 14px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #ff7f8f;
+}
+
+.oag-world--holding-pattern .oag-world-description {
+  margin-bottom: 28px;
+  font-weight: 200;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 420px;
+}
+
+.oag-world--holding-pattern .oag-world-link {
+  padding: 10px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #fff;
+  font-weight: 200;
+  letter-spacing: 0.05em;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.oag-world--holding-pattern .oag-world-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #fff;
+}
+
+/* ---------- Outro ---------- */
+.oag-outro {
+  min-height: calc(100vh - 68px); /* with the footer, fills the last screen */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(80px, 14vh, 140px) 16px;
+}
+
+.oag-outro-logo {
+  width: 64px;
+  height: auto;
+  margin-bottom: 16px;
+  animation: oag-bob 4s ease-in-out infinite;
+}
+
+.oag-outro-title {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 700;
+  color: var(--oag-accent);
+  margin: 0 0 8px;
+}
+
+.oag-outro-text {
+  color: var(--oag-muted);
+  font-size: 1.05rem;
+  margin: 0 0 24px;
 }
 
 /* ---------- Footer ---------- */
 .oag-footer {
-  text-align: center;
   padding: 24px 16px;
+  text-align: center;
   font-size: 0.85rem;
-  color: #6b5f53;
+  color: var(--oag-muted);
   border-top: 1px solid #2e2420;
-  background-color: #1a1210;
 }
-
 
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
-  .oag-hero-title {
-    letter-spacing: 2px;
-  }
+  .oag-header-title { font-size: 1rem; }
+  .oag-hero-title { letter-spacing: 2px; }
+  .oag-about-text { font-size: 0.95rem; }
 
-  .oag-about {
-    margin-top: 24px;
+  .oag-world--gunboat8 .oag-world-description { font-size: 1.35rem; }
+  .oag-step-label { display: none; }
+  .oag-world-content { right: 40px; } /* clear the stepper */
+  .oag-world--holding-pattern .oag-window-atmosphere {
+    background-color: rgba(43, 37, 64, 0.78);
   }
+}
 
-  .oag-about-text {
-    font-size: 0.95rem;
+@media (prefers-reduced-motion: reduce) {
+  .oag-world {
+    --enter: 1 !important;
+    --show: 1 !important;
+    --leave: 0 !important;
+    height: 100vh;
   }
-
-  .oag-project-content {
-    padding: 0 20px 40px;
-  }
-
-  .oag-project-links {
-    flex-direction: column;
-  }
-
-  .oag-project-link {
-    justify-content: center;
-  }
+  .oag-intro-logo,
+  .oag-outro-logo,
+  .oag-hero-title,
+  .oag-divider-arrow,
+  .oag-world-new,
+  .oag-window-atmosphere { animation: none; }
 }

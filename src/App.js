@@ -7,12 +7,15 @@ import BlogFeed from './blog/BlogFeed';
 import BlogPost from './blog/BlogPost';
 import BackToTopButton from './BackToTopButton';
 import OrangeAcornGames from './orangeacorn/OrangeAcornGames';
+import { OagBlogIndex, OagBlogPost } from './orangeacorn/blog/OagBlog';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/orange-acorn-games" element={<OrangeAcornGames />} />
+        <Route path="/orange-acorn-games/blog" element={<OagBlogIndex />} />
+        <Route path="/orange-acorn-games/blog/:slug" element={<OagBlogPost />} />
         <Route path="*" element={<MainLayout />} />
       </Routes>
     </Router>
